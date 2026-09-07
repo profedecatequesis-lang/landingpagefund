@@ -40,3 +40,39 @@ const { title, description, eyebrow, heroTitle, heroDescription, theme, navItems
 
 	<Footer />
 </Layout>
+
+<style>
+	.page-body {
+		padding: 56px 0 80px;
+		background: var(--paper);
+	}
+
+	.page-grid {
+		display: grid;
+		grid-template-columns: 1fr 280px;
+		gap: 48px;
+		align-items: start;
+	}
+
+	.page-main :global(section) {
+		padding: 0 0 56px;
+		scroll-margin-top: 140px;
+	}
+
+	.page-main :global(section:last-child) {
+		padding-bottom: 0;
+	}
+
+	.page-main :global(h2) {
+		font-size: 1.5rem;
+	}
+
+	@media (max-width: 900px) {
+		.page-grid {
+			grid-template-columns: 1fr;
+		}
+		.page-aside {
+			order: -1;
+		}
+	}
+</style>

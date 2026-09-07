@@ -25,3 +25,143 @@ const {
 		<slot />
 	</body>
 </html>
+
+<style is:global>
+	:root {
+		--teal-900: #0e4f52;
+		--teal-800: #135c5f;
+		--teal-700: #17767a;
+		--teal-600: #1c8b8f;
+		--teal-100: #e4f2f2;
+		--teal-50: #f2f9f9;
+		--coral: #d81b4a;
+		--coral-dark: #b8123c;
+		--mustard: #a97314;
+		--mustard-dark: #8a5d10;
+		--deep: #0b3638;
+		--ink: #1c2b2c;
+		--ink-soft: #4a5b5c;
+		--paper: #ffffff;
+		--cream: #faf8f5;
+		--border: #dfe8e8;
+		--radius: 3px;
+		--shadow: 0 1px 2px rgba(14, 79, 82, 0.12);
+		--font-sans: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+		--font-serif: Georgia, "Times New Roman", serif;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		margin: 0;
+		font-family: var(--font-sans);
+		color: var(--ink);
+		background: var(--paper);
+		line-height: 1.55;
+	}
+
+	img {
+		max-width: 100%;
+		display: block;
+	}
+
+	a {
+		color: inherit;
+	}
+
+	.container {
+		width: 100%;
+		max-width: 1180px;
+		margin: 0 auto;
+		padding: 0 24px;
+	}
+
+	section {
+		padding: 72px 0;
+	}
+
+	.eyebrow {
+		display: inline-block;
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--teal-700);
+		margin-bottom: 10px;
+	}
+
+	h1, h2, h3, h4 {
+		font-family: var(--font-sans);
+		font-weight: 800;
+		line-height: 1.2;
+		margin: 0 0 16px;
+		color: var(--teal-900);
+	}
+
+	h2 {
+		font-size: clamp(1.7rem, 2.4vw, 2.3rem);
+	}
+
+	p {
+		margin: 0 0 16px;
+		color: var(--ink-soft);
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 12px 24px;
+		border-radius: var(--radius);
+		font-weight: 700;
+		font-size: 0.92rem;
+		text-decoration: none;
+		border: 2px solid transparent;
+		cursor: pointer;
+		transition: background 0.15s ease, border-color 0.15s ease;
+	}
+
+	.btn-primary {
+		background: var(--coral);
+		color: #fff;
+	}
+
+	.btn-primary:hover {
+		background: var(--coral-dark);
+	}
+
+	.btn-outline {
+		background: transparent;
+		border-color: rgba(255, 255, 255, 0.6);
+		color: #fff;
+	}
+
+	.btn-outline:hover {
+		background: rgba(255, 255, 255, 0.12);
+	}
+
+	.btn-teal {
+		background: var(--teal-700);
+		color: #fff;
+	}
+
+	.btn-teal:hover {
+		background: var(--teal-900);
+	}
+
+	.btn-outline-teal {
+		background: transparent;
+		border-color: var(--teal-700);
+		color: var(--teal-700);
+	}
+
+	.btn-outline-teal:hover {
+		background: var(--teal-50);
+	}
+</style>
