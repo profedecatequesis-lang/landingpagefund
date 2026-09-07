@@ -1,0 +1,319 @@
+---
+const base = import.meta.env.BASE_URL;
+const slides = [
+	{
+		tag: "Institucional",
+		theme: "teal",
+		title: "Fundación Freinet cerró el primer cuatrimestre con récord de inscriptos",
+		excerpt:
+			"Más de 300 educadoras y educadores de toda la provincia de Córdoba participaron de nuestras propuestas de formación durante el primer semestre de 2026.",
+		href: base + "institucional#quienes-somos",
+	},
+	{
+		tag: "Formación",
+		theme: "coral",
+		title: "Curso “Gestión Directiva: Inclusión y Convivencia” con inscripción abierta",
+		excerpt:
+			"Programa de 50 horas con puntaje docente, orientado a equipos de gestión que quieran fortalecer el bienestar educativo en sus instituciones.",
+		href: base + "formacion#cursos-con-puntaje",
+	},
+	{
+		tag: "Comunidad",
+		theme: "mustard",
+		title: "Ya somos más de 5.700 educadoras y educadores en Instagram",
+		excerpt:
+			"Sumate a la comunidad que comparte experiencias de aula, recursos pedagógicos y próximas convocatorias de la Fundación.",
+		href: base + "novedades#noticias",
+	},
+	{
+		tag: "Editorial",
+		theme: "deep",
+		title: "Nuevos materiales para el aula inclusiva ya disponibles",
+		excerpt:
+			"Presentamos la última serie de publicaciones elaboradas junto a especialistas invitados, pensada para acompañar la convivencia escolar.",
+		href: base + "editorial#publicaciones",
+	},
+];
+
+const infoLinks = [
+	{ label: "Docentes", href: base + "formacion" },
+	{ label: "Equipos directivos", href: base + "asesoramiento#a-equipos-directivos" },
+	{ label: "Instituciones", href: base + "asesoramiento#a-instituciones" },
+	{ label: "Familias", href: base + "novedades" },
+	{ label: "Prensa", href: base + "novedades#noticias" },
+];
+---
+
+<section class="hero">
+	<div class="container hero-grid">
+		<div class="slider" id="newsSlider">
+			{slides.map((slide, i) => (
+				<article class:list={["slide", `theme-${slide.theme}`, { active: i === 0 }]} data-index={i}>
+					<span class="slide-tag">{slide.tag}</span>
+					<h1>{slide.title}</h1>
+					<p>{slide.excerpt}</p>
+					<a href={slide.href} class="slide-link">Leer más</a>
+				</article>
+			))}
+
+			<div class="slider-controls">
+				<div class="slider-dots">
+					{slides.map((_, i) => (
+						<button class:list={["dot", { active: i === 0 }]} data-goto={i} aria-label={`Ir a la noticia ${i + 1}`}></button>
+					))}
+				</div>
+				<div class="slider-arrows">
+					<button id="prevSlide" aria-label="Noticia anterior">‹</button>
+					<button id="nextSlide" aria-label="Siguiente noticia">›</button>
+				</div>
+			</div>
+		</div>
+
+		<aside class="info-sidebar">
+			<h2>Información para</h2>
+			<ul>
+				{infoLinks.map((item) => (
+					<li>
+						<a href={item.href}>
+							<span>{item.label}</span>
+							<span class="chevron" aria-hidden="true">›</span>
+						</a>
+					</li>
+				))}
+			</ul>
+		</aside>
+	</div>
+</section>
+
+<script>
+	const slider = document.getElementById("newsSlider");
+	if (slider) {
+		const slides = Array.from(slider.querySelectorAll<HTMLElement>(".slide"));
+		const dots = Array.from(slider.querySelectorAll<HTMLElement>(".dot"));
+		const prevBtn = document.getElementById("prevSlide");
+		const nextBtn = document.getElementById("nextSlide");
+		let current = 0;
+		let timer: ReturnType<typeof setInterval>;
+
+		function show(index: number) {
+			slides[current].classList.remove("active");
+			dots[current].classList.remove("active");
+			current = (index + slides.length) % slides.length;
+			slides[current].classList.add("active");
+			dots[current].classList.add("active");
+		}
+
+		function restart() {
+			clearInterval(timer);
+			timer = setInterval(() => show(current + 1), 6000);
+		}
+
+		prevBtn?.addEventListener("click", () => {
+			show(current - 1);
+			restart();
+		});
+		nextBtn?.addEventListener("click", () => {
+			show(current + 1);
+			restart();
+		});
+		dots.forEach((dot, i) => {
+			dot.addEventListener("click", () => {
+				show(i);
+				restart();
+			});
+		});
+
+		restart();
+	}
+</script>
+
+<style>
+	.hero {
+		background: var(--cream);
+		padding: 32px 0 48px;
+	}
+
+	.hero-grid {
+		display: grid;
+		grid-template-columns: 2fr 1fr;
+		gap: 24px;
+		align-items: stretch;
+	}
+
+	.slider {
+		position: relative;
+		border-radius: var(--radius);
+		overflow: hidden;
+		min-height: 320px;
+	}
+
+	.slide {
+		display: none;
+		flex-direction: column;
+		justify-content: center;
+		height: 100%;
+		min-height: 320px;
+		padding: 44px 56px 64px;
+		color: #fff;
+	}
+
+	.slide.active {
+		display: flex;
+	}
+
+	.theme-teal { background: var(--teal-800); }
+	.theme-coral { background: var(--coral-dark); }
+	.theme-mustard { background: var(--mustard); }
+	.theme-deep { background: var(--deep); }
+
+	.slide-tag {
+		align-self: flex-start;
+		background: rgba(255, 255, 255, 0.16);
+		padding: 5px 14px;
+		font-size: 0.76rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		margin-bottom: 16px;
+	}
+
+	.slide h1 {
+		color: #fff;
+		font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+		max-width: 22ch;
+		margin-bottom: 14px;
+	}
+
+	.slide p {
+		color: rgba(255, 255, 255, 0.88);
+		max-width: 52ch;
+		margin-bottom: 18px;
+	}
+
+	.slide-link {
+		align-self: flex-start;
+		font-weight: 700;
+		text-decoration: none;
+		color: #fff;
+		border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+		padding-bottom: 2px;
+	}
+
+	.slide-link:hover {
+		border-color: #fff;
+	}
+
+	.slider-controls {
+		position: absolute;
+		bottom: 20px;
+		left: 56px;
+		right: 24px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.slider-dots {
+		display: flex;
+		gap: 8px;
+	}
+
+	.dot {
+		width: 9px;
+		height: 9px;
+		border-radius: 50%;
+		border: none;
+		background: rgba(255, 255, 255, 0.4);
+		cursor: pointer;
+		padding: 0;
+	}
+
+	.dot.active {
+		background: #fff;
+		width: 22px;
+		border-radius: 3px;
+	}
+
+	.slider-arrows {
+		display: flex;
+		gap: 8px;
+	}
+
+	.slider-arrows button {
+		width: 34px;
+		height: 34px;
+		border-radius: 50%;
+		border: 1px solid rgba(255, 255, 255, 0.5);
+		background: rgba(255, 255, 255, 0.12);
+		color: #fff;
+		font-size: 1.1rem;
+		cursor: pointer;
+		line-height: 1;
+	}
+
+	.slider-arrows button:hover {
+		background: rgba(255, 255, 255, 0.25);
+	}
+
+	.info-sidebar {
+		background: #fff;
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		padding: 26px 22px;
+	}
+
+	.info-sidebar h2 {
+		font-family: var(--font-sans);
+		font-size: 0.82rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--teal-800);
+		margin-bottom: 14px;
+	}
+
+	.info-sidebar ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	.info-sidebar a {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 13px 6px;
+		border-bottom: 1px solid var(--border);
+		text-decoration: none;
+		font-weight: 700;
+		font-size: 0.92rem;
+		color: var(--teal-900);
+	}
+
+	.info-sidebar li:last-child a {
+		border-bottom: none;
+	}
+
+	.info-sidebar a:hover {
+		color: var(--coral);
+	}
+
+	.chevron {
+		color: var(--teal-600);
+		font-size: 1.1rem;
+	}
+
+	@media (max-width: 900px) {
+		.hero-grid {
+			grid-template-columns: 1fr;
+		}
+		.slide {
+			padding: 36px 28px 56px;
+		}
+		.slider-controls {
+			left: 28px;
+		}
+	}
+</style>

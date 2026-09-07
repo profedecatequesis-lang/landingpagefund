@@ -1,0 +1,180 @@
+---
+import SectionLayout from "../layouts/SectionLayout.astro";
+
+const navItems = [
+	{ id: "formulario", label: "Formulario" },
+	{ id: "como-llegar", label: "Cómo llegar" },
+	{ id: "formas-de-pago", label: "Formas de pago" },
+	{ id: "preguntas-frecuentes", label: "Preguntas frecuentes" },
+];
+
+const faqs = [
+	{ q: "¿Los cursos otorgan puntaje docente?", a: "Sí, todos nuestros cursos cuentan con protocolo aprobado por el Ministerio de Educación de Córdoba." },
+	{ q: "¿Puedo pagar en cuotas?", a: "Sí, ofrecemos cuotas autofinanciadas y pago con Mercado Pago." },
+	{ q: "¿Dictan cursos in-company para instituciones?", a: "Sí, podemos diseñar una propuesta a medida para tu institución." },
+];
+---
+
+<SectionLayout
+	title="Contacto — Fundación Freinet"
+	description="Formulario de contacto, cómo llegar, formas de pago y preguntas frecuentes de la Fundación Freinet."
+	eyebrow="Contacto"
+	heroTitle="Hablemos"
+	heroDescription="Escribinos por el formulario o por WhatsApp y te respondemos a la brevedad. Estamos para acompañarte en tu formación o en un proyecto institucional."
+	theme="coral"
+	navItems={navItems}
+>
+	<section id="formulario">
+		<span class="eyebrow">Formulario</span>
+		<h2>Escribinos</h2>
+		<form class="contact-form" onsubmit="return false;">
+			<div class="form-row">
+				<label>
+					Nombre y apellido
+					<input type="text" name="nombre" placeholder="Ej: Ana Pérez" />
+				</label>
+				<label>
+					Email
+					<input type="email" name="email" placeholder="nombre@correo.com" />
+				</label>
+			</div>
+			<label>
+				Institución (opcional)
+				<input type="text" name="institucion" placeholder="Nombre de tu escuela" />
+			</label>
+			<label>
+				Mensaje
+				<textarea name="mensaje" rows="4" placeholder="Contanos en qué podemos ayudarte"></textarea>
+			</label>
+			<button type="submit" class="btn btn-primary">Enviar mensaje</button>
+		</form>
+	</section>
+
+	<section id="como-llegar">
+		<span class="eyebrow">Cómo llegar</span>
+		<h2>Sede</h2>
+		<p>Ciudad de Córdoba, Argentina. Texto de ejemplo — dirección exacta a confirmar.</p>
+		<div class="map-placeholder" aria-hidden="true">🗺️ Mapa de ejemplo</div>
+	</section>
+
+	<section id="formas-de-pago">
+		<span class="eyebrow">Formas de pago</span>
+		<h2>Opciones disponibles</h2>
+		<div class="payment-grid">
+			<span>💵 Contado con descuento</span>
+			<span>💳 Cuotas autofinanciadas</span>
+			<span>📱 Mercado Pago</span>
+		</div>
+	</section>
+
+	<section id="preguntas-frecuentes">
+		<span class="eyebrow">Preguntas frecuentes</span>
+		<h2>FAQ</h2>
+		<div class="faq-list">
+			{faqs.map((f) => (
+				<details>
+					<summary>{f.q}</summary>
+					<p>{f.a}</p>
+				</details>
+			))}
+		</div>
+	</section>
+</SectionLayout>
+
+<style>
+	.contact-form {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		margin-top: 20px;
+		max-width: 560px;
+	}
+
+	.form-row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 16px;
+	}
+
+	.contact-form label {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+		font-size: 0.86rem;
+		font-weight: 700;
+		color: var(--teal-900);
+	}
+
+	.contact-form input,
+	.contact-form textarea {
+		font-family: var(--font-sans);
+		font-size: 0.95rem;
+		padding: 11px 14px;
+		border-radius: var(--radius);
+		border: 1px solid var(--border);
+		font-weight: 400;
+		color: var(--ink);
+		resize: vertical;
+	}
+
+	.contact-form input:focus,
+	.contact-form textarea:focus {
+		outline: 2px solid var(--teal-600);
+		outline-offset: 1px;
+	}
+
+	.contact-form button {
+		align-self: flex-start;
+	}
+
+	.map-placeholder {
+		margin-top: 16px;
+		height: 220px;
+		border-radius: var(--radius);
+		background: var(--teal-50);
+		border: 1px dashed var(--teal-100);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--teal-700);
+		font-weight: 700;
+	}
+
+	.payment-grid {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		margin-top: 18px;
+		font-size: 0.95rem;
+		color: var(--ink-soft);
+	}
+
+	.faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		margin-top: 20px;
+	}
+
+	.faq-list details {
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		padding: 14px 18px;
+	}
+
+	.faq-list summary {
+		font-weight: 700;
+		color: var(--teal-900);
+		cursor: pointer;
+	}
+
+	.faq-list p {
+		margin: 10px 0 0;
+	}
+
+	@media (max-width: 560px) {
+		.form-row {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

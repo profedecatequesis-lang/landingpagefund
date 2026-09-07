@@ -1,0 +1,263 @@
+---
+const base = import.meta.env.BASE_URL;
+const posts = [
+	{
+		tag: "Institucional",
+		theme: "teal",
+		title: "Segundo encuentro del curso de Gestión Directiva",
+		excerpt: "Más de 110 colegas de toda la provincia continúan capacitándose junto a Incasup.",
+		href: base + "novedades#noticias",
+	},
+	{
+		tag: "Formación",
+		theme: "coral",
+		title: "Abrimos inscripción a un nuevo ciclo de seminarios",
+		excerpt: "Propuestas breves con puntaje, pensadas para equipos docentes y de conducción.",
+		href: base + "formacion#seminarios",
+	},
+	{
+		tag: "Comunidad",
+		theme: "mustard",
+		title: "Alianza con Fundación Senda Azul",
+		excerpt: "Sumamos especialistas invitadas para acompañar nuestros programas de bienestar educativo.",
+		href: base + "institucional#alianzas-y-convenios",
+	},
+	{
+		tag: "Editorial",
+		theme: "deep",
+		title: "Nuevos materiales para el aula inclusiva",
+		excerpt: "Presentamos la última serie de publicaciones elaboradas junto a especialistas invitados.",
+		href: base + "editorial#publicaciones",
+	},
+];
+
+const videos = [
+	{ title: "Testimonios del curso de Gestión Directiva", duracion: "4:12" },
+	{ title: "Así fue el 2º encuentro junto a Incasup", duracion: "2:35" },
+];
+---
+
+<section id="novedades" class="news">
+	<div class="container">
+		<div class="news-heading">
+			<div>
+				<span class="eyebrow">Novedades</span>
+				<h2>Destacados</h2>
+			</div>
+			<a href={base + "novedades"} class="btn btn-outline-teal">Ver todas las novedades</a>
+		</div>
+
+		<div class="news-layout">
+			<div class="news-grid">
+				{posts.map((post) => (
+					<a href={post.href} class:list={["news-card"]}>
+						<div class:list={["news-image", `theme-${post.theme}`]}>
+							<span class="news-tag">{post.tag}</span>
+							<h3>{post.title}</h3>
+						</div>
+						<div class="news-body">
+							<p>{post.excerpt}</p>
+							<span class="news-cta">Leer más</span>
+						</div>
+					</a>
+				))}
+			</div>
+
+			<aside class="side-widget">
+				<h4>Audiovisuales</h4>
+				<div class="video-list">
+					{videos.map((v) => (
+						<a href={base + "novedades#audiovisuales"} class="video-item">
+							<span class="video-thumb">
+								<span class="play-icon" aria-hidden="true">▶</span>
+							</span>
+							<span class="video-title">
+								{v.title}
+								<span class="video-duration">{v.duracion}</span>
+							</span>
+						</a>
+					))}
+				</div>
+				<a href={base + "novedades#audiovisuales"} class="side-widget-more">Ver más ›</a>
+			</aside>
+		</div>
+	</div>
+</section>
+
+<style>
+	.news-heading {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+		flex-wrap: wrap;
+		gap: 16px;
+	}
+
+	.news-heading h2 {
+		margin-bottom: 0;
+	}
+
+	.news-layout {
+		display: grid;
+		grid-template-columns: 2fr 1fr;
+		gap: 24px;
+		margin-top: 32px;
+		align-items: start;
+	}
+
+	.news-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 20px;
+	}
+
+	.news-card {
+		display: block;
+		text-decoration: none;
+		border-radius: var(--radius);
+		overflow: hidden;
+		border: 1px solid var(--border);
+		background: #fff;
+	}
+
+	.news-card:hover {
+		border-color: var(--teal-600);
+	}
+
+	.news-image {
+		padding: 22px;
+		min-height: 130px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		color: #fff;
+	}
+
+	.news-image.theme-teal { background: var(--teal-800); }
+	.news-image.theme-coral { background: var(--coral-dark); }
+	.news-image.theme-mustard { background: var(--mustard); }
+	.news-image.theme-deep { background: var(--deep); }
+
+	.news-tag {
+		align-self: flex-start;
+		background: rgba(255, 255, 255, 0.2);
+		padding: 4px 12px;
+		font-size: 0.7rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.news-image h3 {
+		color: #fff;
+		font-size: 1.05rem;
+		margin: 16px 0 0;
+	}
+
+	.news-body {
+		padding: 16px 20px 20px;
+	}
+
+	.news-body p {
+		font-size: 0.88rem;
+		margin: 0 0 10px;
+	}
+
+	.news-cta {
+		font-size: 0.82rem;
+		font-weight: 700;
+		color: var(--teal-700);
+	}
+
+	.side-widget {
+		background: #fff;
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		padding: 20px;
+	}
+
+	.side-widget h4 {
+		font-family: var(--font-sans);
+		font-size: 0.82rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--teal-800);
+		margin: 0 0 14px;
+	}
+
+	.video-list {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	.video-item {
+		display: flex;
+		gap: 12px;
+		align-items: center;
+		text-decoration: none;
+	}
+
+	.video-thumb {
+		width: 64px;
+		height: 44px;
+		flex-shrink: 0;
+		background: var(--teal-800);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: var(--radius);
+	}
+
+	.play-icon {
+		color: #fff;
+		font-size: 0.85rem;
+	}
+
+	.video-title {
+		font-size: 0.85rem;
+		font-weight: 700;
+		color: var(--teal-900);
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+	}
+
+	.video-item:hover .video-title {
+		color: var(--coral);
+	}
+
+	.video-duration {
+		font-size: 0.72rem;
+		font-weight: 400;
+		color: var(--ink-soft);
+	}
+
+	.side-widget-more {
+		display: inline-block;
+		margin-top: 16px;
+		font-size: 0.82rem;
+		font-weight: 700;
+		color: var(--teal-700);
+		text-decoration: none;
+	}
+
+	.side-widget-more:hover {
+		color: var(--coral);
+	}
+
+	@media (max-width: 900px) {
+		.news-layout {
+			grid-template-columns: 1fr;
+		}
+		.news-grid {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.news-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

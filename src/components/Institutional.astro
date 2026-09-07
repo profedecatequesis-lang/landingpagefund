@@ -1,0 +1,93 @@
+---
+const base = import.meta.env.BASE_URL;
+const stats = [
+	{ value: "844+", label: "Seguidores en Facebook" },
+	{ value: "5.700+", label: "Seguidores en Instagram" },
+	{ value: "110+", label: "Colegas en la última capacitación" },
+	{ value: "50 hs", label: "De formación con puntaje" },
+];
+---
+
+<section id="institucional" class="institutional">
+	<div class="container institutional-grid">
+		<div class="institutional-copy">
+			<span class="eyebrow">Quiénes somos</span>
+			<h2>Una fundación pensada por y para educadores</h2>
+			<p>
+				Somos una organización no gubernamental de Córdoba dedicada a acompañar a docentes,
+				directivos e instituciones educativas. Nuestro trabajo se inspira en la pedagogía de
+				Célestin Freinet: una educación activa, cooperativa y arraigada en la realidad de
+				cada comunidad escolar.
+			</p>
+			<p>
+				Ofrecemos capacitaciones con puntaje docente reconocido por el Ministerio de Educación
+				de la Provincia de Córdoba, asesoramiento educativo a medida, servicios editoriales y
+				programas de formación para la gestión directiva, siempre junto a especialistas
+				invitados como Fundación Senda Azul.
+			</p>
+			<div class="institutional-actions">
+				<a href={base + "institucional"} class="btn btn-outline-teal">Conocer más</a>
+				<a href={base + "contacto"} class="btn btn-teal">Hablemos de tu institución</a>
+			</div>
+		</div>
+
+		<div class="stats-grid">
+			{stats.map((s) => (
+				<div class="stat-card">
+					<strong>{s.value}</strong>
+					<span>{s.label}</span>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.institutional-grid {
+		display: grid;
+		grid-template-columns: 1.1fr 0.9fr;
+		gap: 56px;
+		align-items: center;
+	}
+
+	.institutional-actions {
+		display: flex;
+		gap: 14px;
+		flex-wrap: wrap;
+	}
+
+	.stats-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 18px;
+	}
+
+	.stat-card {
+		background: var(--teal-50);
+		border: 1px solid var(--teal-100);
+		border-radius: var(--radius);
+		padding: 26px 20px;
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+		text-align: center;
+	}
+
+	.stat-card strong {
+		font-family: var(--font-sans);
+		font-weight: 800;
+		font-size: 1.9rem;
+		color: var(--teal-800);
+	}
+
+	.stat-card span {
+		font-size: 0.86rem;
+		color: var(--ink-soft);
+	}
+
+	@media (max-width: 860px) {
+		.institutional-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

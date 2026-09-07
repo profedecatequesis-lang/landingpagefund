@@ -1,0 +1,147 @@
+---
+const base = import.meta.env.BASE_URL;
+import SectionLayout from "../layouts/SectionLayout.astro";
+
+const navItems = [
+	{ id: "publicaciones", label: "Publicaciones" },
+	{ id: "materiales-didacticos", label: "Materiales didácticos" },
+	{ id: "servicios-editoriales", label: "Servicios editoriales" },
+];
+
+const publicaciones = [
+	{ titulo: "Cuadernillo de Convivencia Escolar", tipo: "Material de aula", anio: "2025" },
+	{ titulo: "Guía de Bienestar Educativo para Equipos Directivos", tipo: "Guía de gestión", anio: "2025" },
+	{ titulo: "Freinet hoy: técnicas activas para el aula", tipo: "Publicación pedagógica", anio: "2024" },
+];
+
+const servicios = [
+	{ titulo: "Corrección pedagógica", desc: "Revisión de materiales didácticos y secuencias de enseñanza." },
+	{ titulo: "Diseño de cuadernillos", desc: "Elaboración de materiales para cursos y capacitaciones propias." },
+	{ titulo: "Edición de publicaciones institucionales", desc: "Acompañamiento integral desde el texto hasta la impresión." },
+];
+---
+
+<SectionLayout
+	title="Servicios Editoriales — Fundación Freinet"
+	description="Publicaciones, materiales didácticos y servicios editoriales de la Fundación Freinet."
+	eyebrow="Editorial"
+	heroTitle="Materiales pensados para el aula y la gestión"
+	heroDescription="Elaboramos y acompañamos publicaciones pedagógicas, guías de gestión y materiales didácticos junto a especialistas invitados."
+	theme="deep"
+	navItems={navItems}
+>
+	<section id="publicaciones">
+		<span class="eyebrow">Publicaciones</span>
+		<h2>Catálogo</h2>
+		<div class="pub-grid">
+			{publicaciones.map((p) => (
+				<article class="pub-card">
+					<div class="pub-cover" aria-hidden="true">📘</div>
+					<div class="pub-body">
+						<span class="pub-tipo">{p.tipo} · {p.anio}</span>
+						<h3>{p.titulo}</h3>
+					</div>
+				</article>
+			))}
+		</div>
+	</section>
+
+	<section id="materiales-didacticos">
+		<span class="eyebrow">Materiales didácticos</span>
+		<h2>Recursos para el aula</h2>
+		<p>
+			Texto de ejemplo: desarrollamos cuadernillos, fichas y secuencias didácticas que
+			acompañan nuestros cursos y que también pueden adaptarse a la realidad de cada
+			institución.
+		</p>
+	</section>
+
+	<section id="servicios-editoriales">
+		<span class="eyebrow">Servicios editoriales</span>
+		<h2>Qué ofrecemos</h2>
+		<div class="service-grid">
+			{servicios.map((s) => (
+				<div class="service-card">
+					<strong>{s.titulo}</strong>
+					<p>{s.desc}</p>
+				</div>
+			))}
+		</div>
+		<a href={base + "contacto"} class="btn btn-teal">Consultar por un proyecto editorial</a>
+	</section>
+</SectionLayout>
+
+<style>
+	.pub-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 18px;
+		margin-top: 20px;
+	}
+
+	.pub-card {
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		overflow: hidden;
+		background: var(--cream);
+	}
+
+	.pub-cover {
+		background: var(--teal-800);
+		color: #fff;
+		font-size: 2rem;
+		height: 100px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.pub-body {
+		padding: 16px 18px;
+	}
+
+	.pub-tipo {
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--teal-700);
+		font-weight: 700;
+	}
+
+	.pub-card h3 {
+		font-size: 0.98rem;
+		margin: 8px 0 0;
+	}
+
+	.service-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 16px;
+		margin: 20px 0 24px;
+	}
+
+	.service-card {
+		background: var(--teal-50);
+		border: 1px solid var(--teal-100);
+		border-radius: var(--radius);
+		padding: 18px;
+	}
+
+	.service-card strong {
+		display: block;
+		color: var(--teal-900);
+		margin-bottom: 6px;
+	}
+
+	.service-card p {
+		margin: 0;
+		font-size: 0.88rem;
+	}
+
+	@media (max-width: 700px) {
+		.pub-grid,
+		.service-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
