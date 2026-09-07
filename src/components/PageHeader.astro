@@ -1,0 +1,23 @@
+---
+interface Props {
+	eyebrow: string;
+	title: string;
+	description: string;
+	theme?: "teal" | "coral" | "mustard" | "deep";
+}
+
+const { eyebrow, title, description, theme = "teal" } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<section class:list={["page-header", `theme-${theme}`]}>
+	<div class="container">
+		<nav class="breadcrumb" aria-label="Breadcrumb">
+			<a href={base}>Inicio</a>
+			<span>/</span>
+			<span>{eyebrow}</span>
+		</nav>
+		<h1>{title}</h1>
+		<p>{description}</p>
+	</div>
+</section>
