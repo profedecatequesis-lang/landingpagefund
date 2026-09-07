@@ -1,0 +1,121 @@
+---
+const base = import.meta.env.BASE_URL;
+import SectionLayout from "../layouts/SectionLayout.astro";
+
+const navItems = [
+	{ id: "a-instituciones", label: "A instituciones" },
+	{ id: "a-equipos-directivos", label: "A equipos directivos" },
+	{ id: "convivencia-escolar", label: "Convivencia escolar" },
+	{ id: "bienestar-educativo", label: "Bienestar educativo" },
+];
+
+const pasos = [
+	{ n: "1", t: "Diagnóstico", d: "Relevamos la situación institucional junto al equipo de conducción." },
+	{ n: "2", t: "Plan de trabajo", d: "Diseñamos una propuesta a medida, con objetivos y tiempos claros." },
+	{ n: "3", t: "Acompañamiento", d: "Sostenemos encuentros periódicos de seguimiento y ajuste." },
+	{ n: "4", t: "Evaluación", d: "Medimos resultados y proponemos próximos pasos." },
+];
+---
+
+<SectionLayout
+	title="Asesoramiento — Fundación Freinet"
+	description="Asesoramiento educativo a instituciones, equipos directivos, convivencia escolar y bienestar educativo."
+	eyebrow="Asesoramiento"
+	heroTitle="Acompañamiento a medida para tu institución"
+	heroDescription="Trabajamos junto a equipos directivos e instituciones educativas en procesos de mejora sostenidos en el tiempo, con foco en la convivencia y el bienestar de toda la comunidad."
+	theme="mustard"
+	navItems={navItems}
+>
+	<section id="a-instituciones">
+		<span class="eyebrow">Para instituciones</span>
+		<h2>Un proceso hecho a la medida de tu escuela</h2>
+		<p>
+			Texto de ejemplo: cada institución tiene su propia historia y sus propios desafíos. Por
+			eso nuestros procesos de asesoramiento comienzan siempre con una escucha activa del
+			equipo de conducción y de la comunidad educativa.
+		</p>
+		<div class="steps">
+			{pasos.map((p) => (
+				<div class="step">
+					<span class="step-n">{p.n}</span>
+					<div>
+						<strong>{p.t}</strong>
+						<p>{p.d}</p>
+					</div>
+				</div>
+			))}
+		</div>
+	</section>
+
+	<section id="a-equipos-directivos">
+		<span class="eyebrow">Para equipos directivos</span>
+		<h2>Herramientas para liderar con claridad</h2>
+		<p>
+			Texto de ejemplo: acompañamos a directoras, directores y equipos de gestión en la toma de
+			decisiones, la comunicación institucional y la construcción de equipos de trabajo más
+			cohesionados.
+		</p>
+	</section>
+
+	<section id="convivencia-escolar">
+		<span class="eyebrow">Convivencia escolar</span>
+		<h2>Vínculos que sostienen el aprendizaje</h2>
+		<p>
+			Texto de ejemplo: trabajamos protocolos de convivencia, mediación de conflictos y
+			estrategias para fortalecer el clima escolar entre estudiantes, docentes y familias.
+		</p>
+	</section>
+
+	<section id="bienestar-educativo">
+		<span class="eyebrow">Bienestar educativo</span>
+		<h2>Cuidar a quienes cuidan</h2>
+		<p>
+			Texto de ejemplo: promovemos el bienestar docente como condición necesaria para sostener
+			procesos de enseñanza de calidad, con espacios de reflexión y prevención del desgaste
+			profesional.
+		</p>
+		<a href={base + "contacto"} class="btn btn-teal">Solicitar una reunión</a>
+	</section>
+</SectionLayout>
+
+<style>
+	.steps {
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+		margin-top: 22px;
+	}
+
+	.step {
+		display: flex;
+		gap: 16px;
+		align-items: flex-start;
+		background: var(--teal-50);
+		border-radius: var(--radius);
+		padding: 16px 18px;
+	}
+
+	.step-n {
+		width: 32px;
+		height: 32px;
+		border-radius: 50%;
+		background: var(--teal-700);
+		color: #fff;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 700;
+		flex-shrink: 0;
+	}
+
+	.step strong {
+		display: block;
+		color: var(--teal-900);
+		margin-bottom: 2px;
+	}
+
+	.step p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+</style>

@@ -1,0 +1,174 @@
+---
+const base = import.meta.env.BASE_URL;
+import SectionLayout from "../layouts/SectionLayout.astro";
+
+const navItems = [
+	{ id: "quienes-somos", label: "Quiénes somos" },
+	{ id: "autoridades", label: "Autoridades" },
+	{ id: "historia", label: "Historia" },
+	{ id: "alianzas-y-convenios", label: "Alianzas y convenios" },
+	{ id: "memoria-institucional", label: "Memoria institucional" },
+];
+
+const autoridades = [
+	{ rol: "Presidencia", nombre: "María Laura Gómez" },
+	{ rol: "Vicepresidencia", nombre: "Sergio Domínguez" },
+	{ rol: "Secretaría", nombre: "Ana Belén Torres" },
+	{ rol: "Tesorería", nombre: "Rodrigo Ibáñez" },
+];
+
+const alianzas = [
+	{ nombre: "Fundación Senda Azul", desc: "Capacitadoras invitadas en programas de bienestar y convivencia escolar." },
+	{ nombre: "Incasup", desc: "Espacio institucional sede de encuentros presenciales de formación." },
+	{ nombre: "Ministerio de Educación de Córdoba", desc: "Reconocimiento de puntaje docente para nuestros trayectos formativos." },
+];
+
+const hitos = [
+	{ anio: "2021", texto: "Constitución de la Fundación Freinet (Pers. Jur. n.º 338C/21)." },
+	{ anio: "2022", texto: "Primeras capacitaciones con puntaje docente en la provincia de Córdoba." },
+	{ anio: "2024", texto: "Incorporación como oferente de formación (RPFDC 733-0)." },
+	{ anio: "2026", texto: "Lanzamiento del programa de Gestión Directiva junto a Fundación Senda Azul." },
+];
+---
+
+<SectionLayout
+	title="Institucional — Fundación Freinet"
+	description="Quiénes somos, autoridades, historia y alianzas de la Fundación Freinet."
+	eyebrow="Institucional"
+	heroTitle="Una fundación pensada por y para educadores"
+	heroDescription="Conocé nuestra misión, quiénes la llevan adelante y el camino recorrido desde 2021 acompañando a docentes e instituciones de Córdoba."
+	theme="teal"
+	navItems={navItems}
+>
+	<section id="quienes-somos">
+		<span class="eyebrow">Quiénes somos</span>
+		<h2>Educación activa, cooperativa y arraigada en la comunidad</h2>
+		<p>
+			Somos una organización no gubernamental de Córdoba dedicada a acompañar a docentes,
+			directivos e instituciones educativas. Nuestro trabajo se inspira en la pedagogía de
+			Célestin Freinet: una educación activa, cooperativa y arraigada en la realidad de cada
+			comunidad escolar.
+		</p>
+		<p>
+			Ofrecemos capacitaciones con puntaje docente reconocido por el Ministerio de Educación
+			de la Provincia de Córdoba, asesoramiento educativo a medida, servicios editoriales y
+			programas de formación para la gestión directiva.
+		</p>
+		<p>
+			<em>Texto de ejemplo:</em> nuestra misión es contribuir a una escuela más inclusiva, donde
+			el bienestar de estudiantes y educadores sea el punto de partida de cualquier propuesta
+			pedagógica.
+		</p>
+	</section>
+
+	<section id="autoridades">
+		<span class="eyebrow">Autoridades</span>
+		<h2>Comisión directiva</h2>
+		<p>Texto de ejemplo — reemplazar por los nombres reales de la comisión directiva vigente.</p>
+		<div class="card-grid">
+			{autoridades.map((a) => (
+				<div class="mini-card">
+					<strong>{a.rol}</strong>
+					<span>{a.nombre}</span>
+				</div>
+			))}
+		</div>
+	</section>
+
+	<section id="historia">
+		<span class="eyebrow">Historia</span>
+		<h2>Nuestro recorrido</h2>
+		<ul class="timeline">
+			{hitos.map((h) => (
+				<li>
+					<span class="timeline-year">{h.anio}</span>
+					<span>{h.texto}</span>
+				</li>
+			))}
+		</ul>
+	</section>
+
+	<section id="alianzas-y-convenios">
+		<span class="eyebrow">Alianzas y convenios</span>
+		<h2>Con quiénes trabajamos</h2>
+		<div class="card-grid">
+			{alianzas.map((al) => (
+				<div class="mini-card">
+					<strong>{al.nombre}</strong>
+					<span>{al.desc}</span>
+				</div>
+			))}
+		</div>
+	</section>
+
+	<section id="memoria-institucional">
+		<span class="eyebrow">Memoria institucional</span>
+		<h2>Informes de gestión</h2>
+		<p>
+			Texto de ejemplo: cada año publicamos una memoria con el detalle de las capacitaciones
+			dictadas, la cantidad de educadores alcanzados y los principales resultados de nuestros
+			programas de asesoramiento.
+		</p>
+		<a href={base + "contacto"} class="btn btn-teal">Solicitar la memoria 2025</a>
+	</section>
+</SectionLayout>
+
+<style>
+	.card-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 16px;
+		margin-top: 20px;
+	}
+
+	.mini-card {
+		background: var(--teal-50);
+		border: 1px solid var(--teal-100);
+		border-radius: var(--radius);
+		padding: 16px 18px;
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.mini-card strong {
+		color: var(--teal-900);
+		font-family: var(--font-sans);
+		font-weight: 800;
+	}
+
+	.mini-card span {
+		font-size: 0.88rem;
+		color: var(--ink-soft);
+	}
+
+	.timeline {
+		list-style: none;
+		margin: 20px 0 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+	}
+
+	.timeline li {
+		display: grid;
+		grid-template-columns: 70px 1fr;
+		gap: 16px;
+		align-items: baseline;
+		border-left: 3px solid var(--teal-600);
+		padding-left: 16px;
+	}
+
+	.timeline-year {
+		font-family: var(--font-sans);
+		font-weight: 800;
+		color: var(--teal-800);
+	}
+
+	@media (max-width: 560px) {
+		.card-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

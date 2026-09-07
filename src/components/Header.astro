@@ -1,0 +1,334 @@
+---
+const base = import.meta.env.BASE_URL;
+const navLinks = [
+	{
+		label: "Institucional",
+		href: base + "institucional",
+		children: [
+			{ label: "Quiénes somos", href: base + "institucional#quienes-somos" },
+			{ label: "Autoridades", href: base + "institucional#autoridades" },
+			{ label: "Historia", href: base + "institucional#historia" },
+			{ label: "Alianzas y convenios", href: base + "institucional#alianzas-y-convenios" },
+			{ label: "Memoria institucional", href: base + "institucional#memoria-institucional" },
+		],
+	},
+	{
+		label: "Formación",
+		href: base + "formacion",
+		children: [
+			{ label: "Cursos con puntaje", href: base + "formacion#cursos-con-puntaje" },
+			{ label: "Gestión directiva", href: base + "formacion#gestion-directiva" },
+			{ label: "Seminarios", href: base + "formacion#seminarios" },
+			{ label: "Calendario de cursada", href: base + "formacion#calendario-de-cursada" },
+			{ label: "Certificaciones", href: base + "formacion#certificaciones" },
+		],
+	},
+	{
+		label: "Asesoramiento",
+		href: base + "asesoramiento",
+		children: [
+			{ label: "A instituciones", href: base + "asesoramiento#a-instituciones" },
+			{ label: "A equipos directivos", href: base + "asesoramiento#a-equipos-directivos" },
+			{ label: "Convivencia escolar", href: base + "asesoramiento#convivencia-escolar" },
+			{ label: "Bienestar educativo", href: base + "asesoramiento#bienestar-educativo" },
+		],
+	},
+	{
+		label: "Editorial",
+		href: base + "editorial",
+		children: [
+			{ label: "Publicaciones", href: base + "editorial#publicaciones" },
+			{ label: "Materiales didácticos", href: base + "editorial#materiales-didacticos" },
+			{ label: "Servicios editoriales", href: base + "editorial#servicios-editoriales" },
+		],
+	},
+	{
+		label: "Novedades",
+		href: base + "novedades",
+		children: [
+			{ label: "Noticias", href: base + "novedades#noticias" },
+			{ label: "Redes sociales", href: base + "novedades#redes-sociales" },
+			{ label: "Próximas convocatorias", href: base + "novedades#proximas-convocatorias" },
+		],
+	},
+];
+---
+
+<header class="site-header">
+	<div class="topbar">
+		<div class="container topbar-inner">
+			<a href={base} class="brand">
+				<span class="brand-mark">FF</span>
+				<span class="brand-text">
+					<strong>Fundación Freinet</strong>
+					<small>Pers. Jur. n.º 338C/21 · Oferente RPFDC 733-0</small>
+				</span>
+			</a>
+
+			<div class="topbar-links">
+				<a href={base + "novedades#noticias"}>Noticias</a>
+				<a href={base + "novedades#proximas-convocatorias"}>Calendario</a>
+				<a href={base + "editorial#publicaciones"}>Publicaciones</a>
+				<a href={base + "formacion#cursos-con-puntaje"}>Cursos</a>
+				<a href={base + "contacto"}>Consultas</a>
+				<a href={base + "formacion"} class="topbar-highlight">Campus Virtual</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="navbar">
+		<div class="container navbar-inner">
+			<nav class="mainnav" aria-label="Navegación principal">
+				<ul>
+					{navLinks.map((link) => (
+						<li class="has-dropdown">
+							<a href={link.href}>{link.label}</a>
+							<div class="dropdown">
+								<ul>
+									{link.children.map((child) => (
+										<li><a href={child.href}>{child.label}</a></li>
+									))}
+								</ul>
+							</div>
+						</li>
+					))}
+				</ul>
+			</nav>
+
+			<form class="searchbox" role="search" onsubmit="return false;">
+				<input type="text" placeholder="Escribir texto a buscar..." aria-label="Buscar" />
+				<button type="submit" aria-label="Buscar">🔍</button>
+			</form>
+		</div>
+	</div>
+</header>
+
+<style>
+	.site-header {
+		position: sticky;
+		top: 0;
+		z-index: 50;
+	}
+
+	.topbar {
+		background: #fff;
+		border-bottom: 1px solid var(--border);
+	}
+
+	.topbar-inner {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 20px;
+		padding: 12px 24px;
+		flex-wrap: wrap;
+	}
+
+	.brand {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		text-decoration: none;
+		flex-shrink: 0;
+	}
+
+	.brand-mark {
+		width: 44px;
+		height: 44px;
+		border-radius: 2px;
+		background: var(--teal-700);
+		color: #fff;
+		font-family: var(--font-sans);
+		font-weight: 800;
+		font-size: 1.1rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+	}
+
+	.brand-text {
+		display: flex;
+		flex-direction: column;
+		line-height: 1.2;
+	}
+
+	.brand-text strong {
+		font-family: var(--font-sans);
+		font-weight: 800;
+		font-size: 1.1rem;
+		color: var(--teal-900);
+	}
+
+	.brand-text small {
+		color: var(--ink-soft);
+		font-size: 0.68rem;
+	}
+
+	.topbar-links {
+		display: flex;
+		align-items: center;
+		gap: 18px;
+		flex-wrap: wrap;
+		font-size: 0.85rem;
+		font-weight: 600;
+	}
+
+	.topbar-links a {
+		text-decoration: none;
+		color: var(--ink-soft);
+	}
+
+	.topbar-links a:hover {
+		color: var(--teal-800);
+	}
+
+	.topbar-highlight {
+		background: var(--teal-700);
+		color: #fff !important;
+		padding: 8px 16px;
+		border-radius: 2px;
+	}
+
+	.topbar-highlight:hover {
+		background: var(--teal-900);
+		color: #fff !important;
+	}
+
+	.navbar {
+		background: var(--teal-900);
+	}
+
+	.navbar-inner {
+		display: flex;
+		align-items: stretch;
+		justify-content: space-between;
+		gap: 20px;
+	}
+
+	.mainnav ul {
+		display: flex;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.has-dropdown {
+		position: relative;
+	}
+
+	.mainnav > ul > li > a {
+		display: block;
+		padding: 16px 20px;
+		text-decoration: none;
+		font-size: 0.88rem;
+		font-weight: 700;
+		letter-spacing: 0.03em;
+		text-transform: uppercase;
+		color: #fff;
+	}
+
+	.has-dropdown:hover > a,
+	.has-dropdown:focus-within > a {
+		background: var(--teal-700);
+	}
+
+	.dropdown {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		min-width: 230px;
+		background: #fff;
+		border: 1px solid var(--border);
+		border-top: 3px solid var(--teal-700);
+		box-shadow: var(--shadow);
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(6px);
+		transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+		z-index: 60;
+	}
+
+	.has-dropdown:hover .dropdown,
+	.has-dropdown:focus-within .dropdown {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+
+	.dropdown ul {
+		flex-direction: column;
+		padding: 8px 0;
+	}
+
+	.dropdown a {
+		display: block;
+		padding: 10px 20px;
+		font-size: 0.86rem;
+		font-weight: 600;
+		text-transform: none;
+		letter-spacing: normal;
+		color: var(--ink);
+		text-decoration: none;
+	}
+
+	.dropdown a:hover {
+		background: var(--teal-50);
+		color: var(--teal-800);
+	}
+
+	.searchbox {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		align-self: center;
+		background: rgba(255, 255, 255, 0.1);
+		border-radius: 2px;
+		padding: 6px 6px 6px 16px;
+		margin: 10px 0;
+	}
+
+	.searchbox input {
+		background: transparent;
+		border: none;
+		outline: none;
+		color: #fff;
+		font-size: 0.85rem;
+		width: 160px;
+	}
+
+	.searchbox input::placeholder {
+		color: #bcd8d8;
+	}
+
+	.searchbox button {
+		background: rgba(255, 255, 255, 0.15);
+		border: none;
+		border-radius: 50%;
+		width: 30px;
+		height: 30px;
+		cursor: pointer;
+	}
+
+	@media (max-width: 900px) {
+		.searchbox {
+			display: none;
+		}
+		.mainnav {
+			overflow-x: auto;
+		}
+		.mainnav > ul > li > a {
+			padding: 14px 14px;
+			white-space: nowrap;
+		}
+	}
+
+	@media (max-width: 700px) {
+		.brand-text small {
+			display: none;
+		}
+		.topbar-links {
+			display: none;
+		}
+	}
+</style>

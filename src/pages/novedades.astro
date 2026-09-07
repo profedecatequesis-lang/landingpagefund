@@ -1,0 +1,298 @@
+---
+import SectionLayout from "../layouts/SectionLayout.astro";
+
+const navItems = [
+	{ id: "noticias", label: "Noticias" },
+	{ id: "redes-sociales", label: "Redes sociales" },
+	{ id: "audiovisuales", label: "Audiovisuales" },
+	{ id: "proximas-convocatorias", label: "Próximas convocatorias" },
+];
+
+const noticias = [
+	{
+		tag: "Institucional",
+		theme: "teal",
+		title: "Segundo encuentro del curso de Gestión Directiva",
+		excerpt: "Más de 110 colegas de toda la provincia continúan capacitándose junto a Incasup.",
+		fecha: "20 de agosto de 2026",
+	},
+	{
+		tag: "Formación",
+		theme: "coral",
+		title: "Abrimos inscripción a un nuevo ciclo de seminarios",
+		excerpt: "Propuestas breves con puntaje, pensadas para equipos docentes y de conducción.",
+		fecha: "12 de agosto de 2026",
+	},
+	{
+		tag: "Comunidad",
+		theme: "mustard",
+		title: "Alianza con Fundación Senda Azul",
+		excerpt: "Sumamos especialistas invitadas para acompañar nuestros programas de bienestar educativo.",
+		fecha: "3 de agosto de 2026",
+	},
+	{
+		tag: "Editorial",
+		theme: "deep",
+		title: "Nuevos materiales para el aula inclusiva",
+		excerpt: "Presentamos la última serie de publicaciones elaboradas junto a especialistas invitados.",
+		fecha: "28 de julio de 2026",
+	},
+];
+
+const convocatorias = [
+	{ fecha: "Sáb. 3/10", titulo: "Evaluación final — Gestión Directiva" },
+	{ fecha: "Lun. 12/10", titulo: "Apertura de inscripción — Ciclo de seminarios 2027" },
+	{ fecha: "Sáb. 7/11", titulo: "Jornada de cierre y entrega de certificados" },
+];
+
+const videos = [
+	{ title: "Testimonios del curso de Gestión Directiva", duracion: "4:12" },
+	{ title: "Así fue el 2º encuentro junto a Incasup", duracion: "2:35" },
+	{ title: "Freinet hoy: entrevista a nuestras capacitadoras", duracion: "6:48" },
+];
+---
+
+<SectionLayout
+	title="Novedades — Fundación Freinet"
+	description="Noticias, redes sociales y próximas convocatorias de la Fundación Freinet."
+	eyebrow="Novedades"
+	heroTitle="Lo que está pasando en la Fundación"
+	heroDescription="Noticias institucionales, novedades de nuestras redes sociales y el calendario de próximas convocatorias."
+	theme="teal"
+	navItems={navItems}
+>
+	<section id="noticias">
+		<span class="eyebrow">Noticias</span>
+		<h2>Últimas publicaciones</h2>
+		<div class="news-list">
+			{noticias.map((n) => (
+				<article class="news-item">
+					<div class:list={["news-tag-wrap", `theme-${n.theme}`]}>
+						<span>{n.tag}</span>
+					</div>
+					<div class="news-content">
+						<span class="news-date">{n.fecha}</span>
+						<h3>{n.title}</h3>
+						<p>{n.excerpt}</p>
+					</div>
+				</article>
+			))}
+		</div>
+	</section>
+
+	<section id="redes-sociales">
+		<span class="eyebrow">Redes sociales</span>
+		<h2>Seguinos en Facebook e Instagram</h2>
+		<p>
+			Compartimos a diario recursos, testimonios y convocatorias junto a la comunidad de
+			educadores que nos acompaña.
+		</p>
+		<div class="social-stats">
+			<div class="social-card">
+				<strong>844+</strong>
+				<span>Seguidores en Facebook</span>
+			</div>
+			<div class="social-card">
+				<strong>5.700+</strong>
+				<span>Seguidores en Instagram</span>
+			</div>
+		</div>
+	</section>
+
+	<section id="audiovisuales">
+		<span class="eyebrow">Audiovisuales</span>
+		<h2>Videos y registros</h2>
+		<p>Material audiovisual de nuestros encuentros, testimonios y entrevistas.</p>
+		<div class="video-grid">
+			{videos.map((v) => (
+				<a href="#" class="video-card">
+					<span class="video-card-thumb">
+						<span class="play-icon" aria-hidden="true">▶</span>
+					</span>
+					<span class="video-card-title">{v.title}</span>
+					<span class="video-card-duration">{v.duracion}</span>
+				</a>
+			))}
+		</div>
+	</section>
+
+	<section id="proximas-convocatorias">
+		<span class="eyebrow">Próximas convocatorias</span>
+		<h2>Agenda</h2>
+		<ul class="agenda-list">
+			{convocatorias.map((c) => (
+				<li>
+					<span class="agenda-fecha">{c.fecha}</span>
+					<span>{c.titulo}</span>
+				</li>
+			))}
+		</ul>
+	</section>
+</SectionLayout>
+
+<style>
+	.news-list {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		margin-top: 20px;
+	}
+
+	.news-item {
+		display: grid;
+		grid-template-columns: 130px 1fr;
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		overflow: hidden;
+	}
+
+	.news-tag-wrap {
+		display: flex;
+		align-items: flex-start;
+		padding: 18px;
+		color: #fff;
+	}
+
+	.news-tag-wrap span {
+		background: rgba(255, 255, 255, 0.2);
+		padding: 4px 10px;
+		font-size: 0.7rem;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
+
+	.theme-teal { background: var(--teal-800); }
+	.theme-coral { background: var(--coral-dark); }
+	.theme-mustard { background: var(--mustard); }
+	.theme-deep { background: var(--deep); }
+
+	.news-content {
+		padding: 18px 20px;
+	}
+
+	.news-date {
+		font-size: 0.78rem;
+		color: var(--teal-700);
+		font-weight: 700;
+	}
+
+	.news-content h3 {
+		font-size: 1rem;
+		margin: 6px 0;
+	}
+
+	.news-content p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.social-stats {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 16px;
+		max-width: 460px;
+		margin-top: 20px;
+	}
+
+	.social-card {
+		background: var(--teal-50);
+		border: 1px solid var(--teal-100);
+		border-radius: var(--radius);
+		padding: 22px;
+		text-align: center;
+	}
+
+	.social-card strong {
+		display: block;
+		font-family: var(--font-sans);
+		font-weight: 800;
+		font-size: 1.6rem;
+		color: var(--teal-800);
+	}
+
+	.social-card span {
+		font-size: 0.82rem;
+		color: var(--ink-soft);
+	}
+
+	.video-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 18px;
+		margin-top: 20px;
+	}
+
+	.video-card {
+		display: flex;
+		flex-direction: column;
+		text-decoration: none;
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		overflow: hidden;
+	}
+
+	.video-card-thumb {
+		background: var(--teal-800);
+		height: 110px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.video-card .play-icon {
+		color: #fff;
+		font-size: 1.4rem;
+	}
+
+	.video-card-title {
+		padding: 14px 16px 4px;
+		font-size: 0.9rem;
+		font-weight: 700;
+		color: var(--teal-900);
+	}
+
+	.video-card:hover .video-card-title {
+		color: var(--coral);
+	}
+
+	.video-card-duration {
+		padding: 0 16px 14px;
+		font-size: 0.78rem;
+		color: var(--ink-soft);
+	}
+
+	.agenda-list {
+		list-style: none;
+		margin: 20px 0 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	.agenda-list li {
+		display: flex;
+		gap: 16px;
+		padding: 14px 16px;
+		background: var(--teal-50);
+		border-radius: var(--radius);
+	}
+
+	.agenda-fecha {
+		font-weight: 700;
+		color: var(--teal-800);
+		min-width: 90px;
+	}
+
+	@media (max-width: 560px) {
+		.news-item {
+			grid-template-columns: 1fr;
+		}
+		.social-stats {
+			grid-template-columns: 1fr;
+		}
+		.video-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

@@ -1,0 +1,217 @@
+---
+const base = import.meta.env.BASE_URL;
+import SectionLayout from "../layouts/SectionLayout.astro";
+
+const navItems = [
+	{ id: "cursos-con-puntaje", label: "Cursos con puntaje" },
+	{ id: "gestion-directiva", label: "Gestión directiva" },
+	{ id: "seminarios", label: "Seminarios" },
+	{ id: "calendario-de-cursada", label: "Calendario de cursada" },
+	{ id: "certificaciones", label: "Certificaciones" },
+];
+
+const cursos = [
+	{
+		titulo: "Gestión Directiva: Inclusión y Convivencia desde el Enfoque de Bienestar Educativo",
+		horas: "50 horas",
+		modalidad: "Semipresencial asincrónica",
+		protocolo: "2026/SDFP 00000797",
+	},
+	{
+		titulo: "Alfabetización inicial y prácticas del lenguaje",
+		horas: "40 horas",
+		modalidad: "Virtual con encuentros sincrónicos",
+		protocolo: "2026/SDFP 00000812",
+	},
+	{
+		titulo: "Convivencia escolar y resolución de conflictos",
+		horas: "30 horas",
+		modalidad: "Presencial",
+		protocolo: "2026/SDFP 00000834",
+	},
+];
+
+const seminarios = [
+	{ titulo: "Neurociencias aplicadas al aula", duracion: "8 horas" },
+	{ titulo: "Evaluación formativa en la escuela primaria", duracion: "12 horas" },
+	{ titulo: "Herramientas digitales para la gestión escolar", duracion: "10 horas" },
+];
+
+const cronograma = [
+	{ fecha: "Sáb. 8/08", detalle: "Gestión Directiva — Encuentro 1", horario: "8:00 a 15:30 hs" },
+	{ fecha: "Sáb. 22/08", detalle: "Gestión Directiva — Encuentro 2", horario: "8:00 a 15:30 hs" },
+	{ fecha: "Sáb. 5/09", detalle: "Gestión Directiva — Encuentro 3", horario: "8:00 a 15:30 hs" },
+	{ fecha: "Sáb. 19/09", detalle: "Gestión Directiva — Encuentro 4", horario: "8:00 a 15:30 hs" },
+	{ fecha: "Vie. 3/10", detalle: "Gestión Directiva — Evaluación final", horario: "9:00 a 12:00 hs" },
+];
+---
+
+<SectionLayout
+	title="Formación — Fundación Freinet"
+	description="Cursos con puntaje docente, gestión directiva, seminarios y calendario de cursada."
+	eyebrow="Formación"
+	heroTitle="Capacitación con puntaje para toda la comunidad educativa"
+	heroDescription="Programas pensados para docentes, equipos de conducción e instituciones que buscan sumar antecedentes y herramientas concretas para el aula y la gestión."
+	theme="coral"
+	navItems={navItems}
+>
+	<section id="cursos-con-puntaje">
+		<span class="eyebrow">Cursos con puntaje</span>
+		<h2>Propuestas vigentes</h2>
+		<div class="course-list">
+			{cursos.map((c) => (
+				<article class="course-item">
+					<h3>{c.titulo}</h3>
+					<div class="course-meta">
+						<span>⏱ {c.horas}</span>
+						<span>💻 {c.modalidad}</span>
+						<span>📋 Protocolo {c.protocolo}</span>
+					</div>
+					<a href={base + "contacto"} class="btn btn-teal">Inscribirme</a>
+				</article>
+			))}
+		</div>
+	</section>
+
+	<section id="gestion-directiva">
+		<span class="eyebrow">Programa insignia</span>
+		<h2>Gestión Directiva: Inclusión y Convivencia</h2>
+		<p>
+			Un recorrido de 50 horas, acreditado por Resolución del Ministerio de Educación de la
+			Provincia de Córdoba, dirigido a equipos directivos que quieran fortalecer el bienestar
+			educativo desde una mirada inclusiva. Se dicta junto a las capacitadoras invitadas de
+			Fundación Senda Azul, combinando encuentros presenciales con trabajo asincrónico.
+		</p>
+		<a href={base + "contacto"} class="btn btn-primary">Inscribirme por WhatsApp</a>
+	</section>
+
+	<section id="seminarios">
+		<span class="eyebrow">Seminarios</span>
+		<h2>Formatos breves</h2>
+		<p>Texto de ejemplo — propuestas cortas para actualizarse en temáticas puntuales.</p>
+		<ul class="seminar-list">
+			{seminarios.map((s) => (
+				<li>
+					<span>{s.titulo}</span>
+					<strong>{s.duracion}</strong>
+				</li>
+			))}
+		</ul>
+	</section>
+
+	<section id="calendario-de-cursada">
+		<span class="eyebrow">Calendario</span>
+		<h2>Próximas fechas</h2>
+		<div class="schedule-table">
+			{cronograma.map((row) => (
+				<div class="schedule-row">
+					<span class="schedule-fecha">{row.fecha}</span>
+					<span class="schedule-detalle">{row.detalle}</span>
+					<span class="schedule-horario">{row.horario}</span>
+				</div>
+			))}
+		</div>
+	</section>
+
+	<section id="certificaciones">
+		<span class="eyebrow">Certificaciones</span>
+		<h2>Cómo funciona el puntaje docente</h2>
+		<p>
+			Texto de ejemplo: al finalizar cada curso, quienes aprueben la instancia de evaluación
+			reciben un certificado con las horas cátedra acreditadas, válido para el sistema de
+			puntaje docente de la provincia de Córdoba.
+		</p>
+	</section>
+</SectionLayout>
+
+<style>
+	.course-list {
+		display: flex;
+		flex-direction: column;
+		gap: 18px;
+		margin-top: 20px;
+	}
+
+	.course-item {
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		padding: 22px 24px;
+		background: var(--cream);
+	}
+
+	.course-item h3 {
+		font-family: var(--font-sans);
+		font-size: 1.05rem;
+		color: var(--teal-900);
+		margin-bottom: 10px;
+	}
+
+	.course-meta {
+		display: flex;
+		gap: 16px;
+		flex-wrap: wrap;
+		font-size: 0.85rem;
+		color: var(--ink-soft);
+		margin-bottom: 16px;
+	}
+
+	.seminar-list {
+		list-style: none;
+		margin: 20px 0 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	.seminar-list li {
+		display: flex;
+		justify-content: space-between;
+		padding: 14px 16px;
+		background: var(--teal-50);
+		border-radius: var(--radius);
+	}
+
+	.seminar-list strong {
+		color: var(--teal-800);
+	}
+
+	.schedule-table {
+		margin-top: 20px;
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		overflow: hidden;
+	}
+
+	.schedule-row {
+		display: grid;
+		grid-template-columns: 110px 1fr 160px;
+		gap: 12px;
+		padding: 12px 18px;
+		font-size: 0.9rem;
+	}
+
+	.schedule-row:nth-child(odd) {
+		background: var(--teal-50);
+	}
+
+	.schedule-fecha {
+		font-weight: 700;
+		color: var(--teal-800);
+	}
+
+	.schedule-horario {
+		color: var(--ink-soft);
+		text-align: right;
+	}
+
+	@media (max-width: 560px) {
+		.schedule-row {
+			grid-template-columns: 1fr;
+			gap: 4px;
+		}
+		.schedule-horario {
+			text-align: left;
+		}
+	}
+</style>
