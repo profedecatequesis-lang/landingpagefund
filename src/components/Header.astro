@@ -7,9 +7,9 @@ const navLinks = [
 		children: [
 			{ label: "Quiénes somos", href: base + "institucional#quienes-somos" },
 			{ label: "Autoridades", href: base + "institucional#autoridades" },
-			{ label: "Historia", href: base + "institucional#historia" },
+			// { label: "Historia", href: base + "institucional#historia" }, // oculto por el momento
 			{ label: "Alianzas y convenios", href: base + "institucional#alianzas-y-convenios" },
-			{ label: "Memoria institucional", href: base + "institucional#memoria-institucional" },
+			// { label: "Memoria institucional", href: base + "institucional#memoria-institucional" }, // oculto por el momento
 		],
 	},
 	{
@@ -18,9 +18,10 @@ const navLinks = [
 		children: [
 			{ label: "Cursos con puntaje", href: base + "formacion#cursos-con-puntaje" },
 			{ label: "Gestión directiva", href: base + "formacion#gestion-directiva" },
-			{ label: "Seminarios", href: base + "formacion#seminarios" },
-			{ label: "Calendario de cursada", href: base + "formacion#calendario-de-cursada" },
-			{ label: "Certificaciones", href: base + "formacion#certificaciones" },
+			// { label: "Seminarios", href: base + "formacion#seminarios" }, // oculto por el momento
+			{ label: "Webinarios", href: base + "formacion#webinarios" },
+			// { label: "Calendario de cursada", href: base + "formacion#calendario-de-cursada" }, // oculto por el momento
+			// { label: "Certificaciones", href: base + "formacion#certificaciones" }, // oculto por el momento
 		],
 	},
 	{
@@ -58,10 +59,10 @@ const navLinks = [
 	<div class="topbar">
 		<div class="container topbar-inner">
 			<a href={base} class="brand">
-				<span class="brand-mark">FF</span>
+				<img src={base + "images/logo-ff.png"} alt="Fundación Freinet" class="brand-mark" />
 				<span class="brand-text">
 					<strong>Fundación Freinet</strong>
-					<small>Pers. Jur. n.º 338C/21 · Oferente RPFDC 733-0</small>
+					<small>Pers. Jur. n.º 338C/21 · Oferente 733-0 SPFDC</small>
 				</span>
 			</a>
 
@@ -135,15 +136,7 @@ const navLinks = [
 	.brand-mark {
 		width: 44px;
 		height: 44px;
-		border-radius: 2px;
-		background: var(--teal-700);
-		color: #fff;
-		font-family: var(--font-sans);
-		font-weight: 800;
-		font-size: 1.1rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		object-fit: contain;
 		flex-shrink: 0;
 	}
 
