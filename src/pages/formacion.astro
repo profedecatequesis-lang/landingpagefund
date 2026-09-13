@@ -5,8 +5,6 @@ import SectionLayout from "../layouts/SectionLayout.astro";
 const navItems = [
 	{ id: "cursos-con-puntaje", label: "Cursos con puntaje" },
 	{ id: "gestion-directiva", label: "Gestión directiva" },
-	{ id: "seminarios", label: "Seminarios" },
-	{ id: "calendario-de-cursada", label: "Calendario de cursada" },
 	{ id: "certificaciones", label: "Certificaciones" },
 ];
 
@@ -58,6 +56,7 @@ const cronograma = [
 	<section id="cursos-con-puntaje">
 		<span class="eyebrow">Cursos con puntaje</span>
 		<h2>Propuestas vigentes</h2>
+		<p>Próximamente presentaremos nuestra renovada oferta formativa.</p>
 		<div class="course-list">
 			{cursos.map((c) => (
 				<article class="course-item">
@@ -67,14 +66,14 @@ const cronograma = [
 						<span>💻 {c.modalidad}</span>
 						<span>📋 Protocolo {c.protocolo}</span>
 					</div>
-					<a href={base + "contacto"} class="btn btn-teal">Inscribirme</a>
+					<a href={base + "contacto"} class="btn btn-teal">Avisarme</a>
 				</article>
 			))}
 		</div>
 	</section>
 
 	<section id="gestion-directiva">
-		<span class="eyebrow">Programa insignia</span>
+		<span class="eyebrow">Programa destacado</span>
 		<h2>Gestión Directiva: Inclusión y Convivencia</h2>
 		<p>
 			Un recorrido de 50 horas, acreditado por Resolución del Ministerio de Educación de la
@@ -82,9 +81,10 @@ const cronograma = [
 			educativo desde una mirada inclusiva. Se dicta junto a las capacitadoras invitadas de
 			Fundación Senda Azul, combinando encuentros presenciales con trabajo asincrónico.
 		</p>
-		<a href={base + "contacto"} class="btn btn-primary">Inscribirme por WhatsApp</a>
+		<a href={base + "contacto"} class="btn btn-primary">Quiero más información</a>
 	</section>
 
+	{/* Seminarios — oculto por el momento, ver `seminarios` en el frontmatter
 	<section id="seminarios">
 		<span class="eyebrow">Seminarios</span>
 		<h2>Formatos breves</h2>
@@ -98,7 +98,9 @@ const cronograma = [
 			))}
 		</ul>
 	</section>
+	*/}
 
+	{/* Calendario de cursada — oculto por el momento, ver `cronograma` en el frontmatter
 	<section id="calendario-de-cursada">
 		<span class="eyebrow">Calendario</span>
 		<h2>Próximas fechas</h2>
@@ -112,6 +114,7 @@ const cronograma = [
 			))}
 		</div>
 	</section>
+	*/}
 
 	<section id="certificaciones">
 		<span class="eyebrow">Certificaciones</span>
