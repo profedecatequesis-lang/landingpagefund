@@ -5,7 +5,10 @@ import SectionLayout from "../layouts/SectionLayout.astro";
 const navItems = [
 	{ id: "cursos-con-puntaje", label: "Cursos con puntaje" },
 	{ id: "gestion-directiva", label: "Gestión directiva" },
-	{ id: "certificaciones", label: "Certificaciones" },
+	// { id: "seminarios", label: "Seminarios" }, // oculto por el momento
+	{ id: "webinarios", label: "Webinarios" },
+	// { id: "calendario-de-cursada", label: "Calendario de cursada" }, // oculto por el momento
+	// { id: "certificaciones", label: "Certificaciones" }, // oculto por el momento
 ];
 
 const cursos = [
@@ -16,16 +19,9 @@ const cursos = [
 		protocolo: "2026/SDFP 00000797",
 	},
 	{
-		titulo: "Alfabetización inicial y prácticas del lenguaje",
-		horas: "40 horas",
-		modalidad: "Virtual con encuentros sincrónicos",
-		protocolo: "2026/SDFP 00000812",
-	},
-	{
-		titulo: "Convivencia escolar y resolución de conflictos",
-		horas: "30 horas",
-		modalidad: "Presencial",
-		protocolo: "2026/SDFP 00000834",
+		titulo: "Preparación para rendir Concursos Directivos",
+		descripcion:
+			"La formación más completa para afrontar las instancias concursales en la selección de cargos directivos para la Provincia de Córdoba. En dos niveles, inicial y avanzado, conocerás las funciones y desarrollarás las capacidades requeridas para desempeñarte en direcciones y vicedirecciones escolares de todos los niveles y modalidades del sistema educativo. Bajo un formato ameno de clases sincrónicas nos proponemos acompañarte en tu desarrollo profesional.",
 	},
 ];
 
@@ -61,11 +57,15 @@ const cronograma = [
 			{cursos.map((c) => (
 				<article class="course-item">
 					<h3>{c.titulo}</h3>
-					<div class="course-meta">
-						<span>⏱ {c.horas}</span>
-						<span>💻 {c.modalidad}</span>
-						<span>📋 Protocolo {c.protocolo}</span>
-					</div>
+					{c.descripcion ? (
+						<p>{c.descripcion}</p>
+					) : (
+						<div class="course-meta">
+							<span>⏱ {c.horas}</span>
+							<span>💻 {c.modalidad}</span>
+							<span>📋 Protocolo {c.protocolo}</span>
+						</div>
+					)}
 					<a href={base + "contacto"} class="btn btn-teal">Avisarme</a>
 				</article>
 			))}
@@ -100,6 +100,20 @@ const cronograma = [
 	</section>
 	*/}
 
+	<section id="webinarios">
+		<span class="eyebrow">Webinarios</span>
+		<h2>Legislación y Normativa Escolar</h2>
+		<p>
+			En un formato de encuentros sincrónicos de dos horas de duración, te capacitamos en el
+			manejo del componente político-normativo que hace al ejercicio de la función docente y
+			directiva. Aprenderás sobre tus derechos y obligaciones, procedimiento administrativo
+			para reclamos, potestad sancionadora de la administración y garantías del debido proceso
+			en relación con la superioridad. Obtendrás material exclusivo que podrás adaptar a tu
+			práctica cotidiana y ganar confianza en el día a día de la profesión.
+		</p>
+		<a href={base + "contacto"} class="btn btn-teal">Más información</a>
+	</section>
+
 	{/* Calendario de cursada — oculto por el momento, ver `cronograma` en el frontmatter
 	<section id="calendario-de-cursada">
 		<span class="eyebrow">Calendario</span>
@@ -116,6 +130,7 @@ const cronograma = [
 	</section>
 	*/}
 
+	{/* Certificaciones — oculto por el momento
 	<section id="certificaciones">
 		<span class="eyebrow">Certificaciones</span>
 		<h2>Cómo funciona el puntaje docente</h2>
@@ -125,6 +140,7 @@ const cronograma = [
 			puntaje docente de la provincia de Córdoba.
 		</p>
 	</section>
+	*/}
 </SectionLayout>
 
 <style>
