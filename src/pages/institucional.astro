@@ -11,8 +11,8 @@ const navItems = [
 ];
 
 const autoridades = [
-	{ rol: "Presidencia y Dirección Ejecutiva", nombre: "Prof. Edmundo Isidro Gómez", foto: base + "images/autoridades/edmundo-gomez.jpg", fotoPos: "center" },
-	{ rol: "Dirección Académica", nombre: "Lic. Ricardo Nicolás Luna", foto: base + "images/autoridades/ricardo-luna.jpg", fotoPos: "center 8%" },
+	{ rol: "Presidencia y Dirección Ejecutiva", nombre: "Prof. Edmundo Isidro Gómez", foto: base + "images/autoridades/edmundo-gomez.jpg" },
+	{ rol: "Dirección Académica", nombre: "Lic. Ricardo Nicolás Luna", foto: base + "images/autoridades/ricardo-luna.jpg" },
 ];
 
 const alianzas = [
@@ -65,7 +65,7 @@ const hitos = [
 		<div class="card-grid">
 			{autoridades.map((a) => (
 				<div class="mini-card">
-					<img src={a.foto} alt={a.nombre} class="autoridad-foto" style={`object-position: ${a.fotoPos}`} />
+					<img src={a.foto} alt={a.nombre} class="autoridad-foto" />
 					<strong>{a.rol}</strong>
 					<span>{a.nombre}</span>
 				</div>
