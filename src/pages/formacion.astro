@@ -17,11 +17,7 @@ const cursos = [
 		horas: "50 horas",
 		modalidad: "Semipresencial asincrónica",
 		protocolo: "2026/SDFP 00000797",
-	},
-	{
-		titulo: "Preparación para rendir Concursos Directivos",
-		descripcion:
-			"La formación más completa para afrontar las instancias concursales en la selección de cargos directivos para la Provincia de Córdoba. En dos niveles, inicial y avanzado, conocerás las funciones y desarrollarás las capacidades requeridas para desempeñarte en direcciones y vicedirecciones escolares de todos los niveles y modalidades del sistema educativo. Bajo un formato ameno de clases sincrónicas nos proponemos acompañarte en tu desarrollo profesional.",
+		cerrado: true,
 	},
 ];
 
@@ -66,7 +62,11 @@ const cronograma = [
 							<span>📋 Protocolo {c.protocolo}</span>
 						</div>
 					)}
-					<a href={base + "contacto"} class="btn btn-teal">Avisarme</a>
+					{c.cerrado ? (
+						<span class="badge-cerrado">Inscripción cerrada</span>
+					) : (
+						<a href={base + "contacto"} class="btn btn-teal">Avisarme</a>
+					)}
 				</article>
 			))}
 		</div>
@@ -174,6 +174,15 @@ const cronograma = [
 		font-size: 0.85rem;
 		color: var(--ink-soft);
 		margin-bottom: 16px;
+	}
+
+	.badge-cerrado {
+		display: inline-block;
+		border: 1px solid #c0392b;
+		color: #c0392b;
+		font-weight: 700;
+		border-radius: var(--radius);
+		padding: 8px 16px;
 	}
 
 	.seminar-list {
