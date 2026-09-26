@@ -9,9 +9,12 @@ const navItems = [
 ];
 
 const publicaciones = [
-	{ titulo: "Cuadernillo de Convivencia Escolar", tipo: "Material de aula", anio: "2025" },
-	{ titulo: "Guía de Bienestar Educativo para Equipos Directivos", tipo: "Guía de gestión", anio: "2025" },
-	{ titulo: "Freinet hoy: técnicas activas para el aula", tipo: "Publicación pedagógica", anio: "2024" },
+	{
+		titulo: "Entre voces, puentes y aulas",
+		tipo: "Libro colaborativo",
+		anio: "2025",
+		imagen: base + "images/publicaciones/entre-voces-puentes-y-aulas.png",
+	},
 ];
 
 const servicios = [
@@ -36,7 +39,13 @@ const servicios = [
 		<div class="pub-grid">
 			{publicaciones.map((p) => (
 				<article class="pub-card">
-					<div class="pub-cover" aria-hidden="true">📘</div>
+					{p.imagen ? (
+						<div class="pub-cover pub-cover-img">
+							<img src={p.imagen} alt={p.titulo} loading="lazy" />
+						</div>
+					) : (
+						<div class="pub-cover" aria-hidden="true">📘</div>
+					)}
 					<div class="pub-body">
 						<span class="pub-tipo">{p.tipo} · {p.anio}</span>
 						<h3>{p.titulo}</h3>
@@ -84,33 +93,57 @@ const servicios = [
 		border-radius: var(--radius);
 		overflow: hidden;
 		background: var(--cream);
+		box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+		transition: box-shadow 0.2s ease, transform 0.2s ease;
+	}
+
+	.pub-card:hover {
+		box-shadow: 0 10px 24px rgba(15, 23, 42, 0.1);
+		transform: translateY(-2px);
 	}
 
 	.pub-cover {
 		background: var(--teal-800);
 		color: #fff;
 		font-size: 2rem;
-		height: 100px;
+		aspect-ratio: 2 / 3;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
 
+	.pub-cover-img {
+		padding: 0;
+	}
+
+	.pub-cover-img img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
 	.pub-body {
-		padding: 16px 18px;
+		padding: 18px 20px 22px;
 	}
 
 	.pub-tipo {
-		font-size: 0.75rem;
+		display: inline-block;
+		font-size: 0.72rem;
 		text-transform: uppercase;
-		letter-spacing: 0.05em;
+		letter-spacing: 0.06em;
 		color: var(--teal-700);
+		background: var(--teal-50);
+		border-radius: 999px;
+		padding: 4px 10px;
 		font-weight: 700;
 	}
 
 	.pub-card h3 {
-		font-size: 0.98rem;
-		margin: 8px 0 0;
+		font-size: 1.05rem;
+		line-height: 1.35;
+		color: var(--teal-900);
+		margin: 12px 0 0;
 	}
 
 	.service-grid {

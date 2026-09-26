@@ -1,39 +1,69 @@
 ---
 const base = import.meta.env.BASE_URL;
 import SectionLayout from "../layouts/SectionLayout.astro";
+import Icon from "../components/Icon.astro";
 
 const navItems = [
-	{ id: "a-instituciones", label: "A instituciones" },
-	{ id: "a-equipos-directivos", label: "A equipos directivos" },
-	{ id: "convivencia-escolar", label: "Convivencia escolar" },
-	{ id: "bienestar-educativo", label: "Bienestar educativo" },
+	{ id: "servicio-de-consultoria", label: "Servicio de Consultoría" },
+	{ id: "acompanamiento-funcion-directiva", label: "Acompañamiento a la Función Directiva" },
+	{ id: "asesoramiento-institucional", label: "Asesoramiento Institucional" },
+	{ id: "conferencias-en-escuelas", label: "Conferencias en Escuelas" },
 ];
 
 const pasos = [
-	{ n: "1", t: "Diagnóstico", d: "Relevamos la situación institucional junto al equipo de conducción." },
-	{ n: "2", t: "Plan de trabajo", d: "Diseñamos una propuesta a medida, con objetivos y tiempos claros." },
-	{ n: "3", t: "Acompañamiento", d: "Sostenemos encuentros periódicos de seguimiento y ajuste." },
-	{ n: "4", t: "Evaluación", d: "Medimos resultados y proponemos próximos pasos." },
+	{ n: "1", t: "Realizás tu consulta", d: "Presentás la situación, duda o problema que necesitás analizar, aportando los datos necesarios para comprender el contexto." },
+	{ n: "2", t: "Analizamos el caso", d: "Nuestro equipo aborda la consulta desde una perspectiva pedagógica, institucional y normativa, considerando la legislación y las disposiciones aplicables a la situación planteada." },
+	{ n: "3", t: "Recibís una orientación fundamentada", d: "Te brindamos una respuesta clara y argumentada, identificando qué aspectos tener en cuenta, qué alternativas de actuación existen y qué marco normativo puede respaldar la intervención." },
+	{ n: "4", t: "Tomás decisiones con mayor seguridad", d: "La finalidad no es resolver por vos, sino ofrecerte elementos que te permitan fundamentar tus decisiones y fortalecer tu práctica profesional." },
+];
+
+const dimensionesInstitucional = [
+	{ icon: "🏫", t: "Gestión institucional y función directiva", d: "Asesoramos en aspectos vinculados con la organización institucional, la conducción, la planificación, la toma de decisiones, la distribución de responsabilidades y el fortalecimiento de los equipos de gestión." },
+	{ icon: "📋", t: "Adecuación a políticas, programas y normativas", d: "Acompañamos a la institución en la interpretación y adecuación de programas y políticas educativas provinciales y nacionales, procurando que puedan incorporarse de manera pertinente a su proyecto institucional." },
+	{ icon: "📚", t: "Actualización y desarrollo profesional docente", d: "Colaboramos en la identificación de necesidades de formación y en la planificación de propuestas de actualización docente, procurando que respondan a las necesidades reales de la institución y de sus equipos." },
+	{ icon: "🛡️", t: "Prevención y cuidado institucional", d: "Trabajamos sobre estrategias preventivas que permitan anticipar situaciones problemáticas, fortalecer los dispositivos institucionales de cuidado y construir condiciones favorables para la convivencia." },
+	{ icon: "🤝", t: "Convivencia y resolución pacífica de conflictos", d: "Asesoramos en la construcción de estrategias para abordar conflictos institucionales desde el diálogo, la participación, la mediación y la búsqueda de acuerdos, favoreciendo una cultura institucional de convivencia democrática." },
+	{ icon: "🌐", t: "Escuela, familias y comunidad", d: "Acompañamos iniciativas destinadas a fortalecer los vínculos entre la institución, las familias, otras organizaciones y la comunidad, favoreciendo una escuela abierta a su contexto." },
+	{ icon: "🚀", t: "Proyección y posicionamiento institucional", d: "Trabajamos junto con la institución en la identificación de sus fortalezas, la construcción de una identidad institucional clara y el desarrollo de proyectos que contribuyan a proyectarla y posicionarla como una institución educativa reconocida y destacada en la Provincia de Córdoba." },
+];
+
+const temasConferencias = [
+	"Legislación y normativa escolar",
+	"Convivencia e inclusión educativa",
+	"Bienestar escolar",
+	"Transformar Córdoba",
+	"PEI y PMI en contexto de planificación",
+	"Trayectorias escolares",
+	"Liderazgo",
+	"Indicadores",
+	"Innovación",
+	"Otros (a convenir)",
 ];
 ---
 
 <SectionLayout
 	title="Asesoramiento — Fundación Freinet"
-	description="Asesoramiento educativo a instituciones, equipos directivos, convivencia escolar y bienestar educativo."
+	description="Servicio de consultoría, acompañamiento a la función directiva, asesoramiento institucional y conferencias en escuelas."
 	eyebrow="Asesoramiento"
-	heroTitle="Acompañamiento a medida para tu institución"
-	heroDescription="Trabajamos junto a equipos directivos e instituciones educativas en procesos de mejora sostenidos en el tiempo, con foco en la convivencia y el bienestar de toda la comunidad."
+	heroTitle="Juntos es mejor"
+	heroDescription="Trabajamos junto a vos en el abordaje de situaciones desafiantes de tu práctica profesional, ya sea como docente, directivo o responsable de una institución educativa, con foco en la mejora permanente."
 	theme="mustard"
 	navItems={navItems}
 >
-	<section id="a-instituciones">
-		<span class="eyebrow">Para instituciones</span>
-		<h2>Un proceso hecho a la medida de tu escuela</h2>
+	<section id="servicio-de-consultoria">
+		<span class="eyebrow">Servicio de Consultoría</span>
+		<h2>Orientación profesional para el ejercicio docente y la función directiva</h2>
 		<p>
-			Texto de ejemplo: cada institución tiene su propia historia y sus propios desafíos. Por
-			eso nuestros procesos de asesoramiento comienzan siempre con una escucha activa del
-			equipo de conducción y de la comunidad educativa.
+			En <strong>Fundación Freinet</strong> ponemos a disposición un servicio de consultoría
+			destinado a docentes y equipos directivos que necesitan analizar una situación concreta,
+			despejar dudas y contar con herramientas para tomar decisiones con mayor seguridad.
 		</p>
+		<p>
+			La consultoría permite realizar consultas vinculadas con el ejercicio profesional
+			docente, la gestión institucional, la función directiva y el marco legislativo y
+			normativo del sistema educativo.
+		</p>
+		<h3>¿Cómo funciona?</h3>
 		<div class="steps">
 			{pasos.map((p) => (
 				<div class="step">
@@ -45,36 +75,120 @@ const pasos = [
 				</div>
 			))}
 		</div>
+		<div class="cta-buttons">
+			<a href="https://forms.gle/PqWBCQNqs1sRjwcd6" class="btn btn-teal" target="_blank" rel="noopener noreferrer">Contratar servicio</a>
+			<a
+				href="https://wa.me/5493516315102?text=Quiero+m%C3%A1s+informaci%C3%B3n+sobre+la+Consultor%C3%ADa+Educativa+y+Directiva"
+				class="btn btn-outline-teal"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				Escribinos
+			</a>
+		</div>
 	</section>
 
-	<section id="a-equipos-directivos">
-		<span class="eyebrow">Para equipos directivos</span>
-		<h2>Herramientas para liderar con claridad</h2>
+	<section id="acompanamiento-funcion-directiva">
+		<span class="eyebrow">Acompañamiento a la Función Directiva</span>
+		<h2>Un espacio de orientación y acompañamiento para quienes tienen la responsabilidad de conducir una institución educativa</h2>
 		<p>
-			Texto de ejemplo: acompañamos a directoras, directores y equipos de gestión en la toma de
-			decisiones, la comunicación institucional y la construcción de equipos de trabajo más
-			cohesionados.
+			La función directiva implica tomar decisiones permanentemente: organizar, planificar,
+			intervenir ante situaciones institucionales, acompañar a los equipos, abordar conflictos y
+			garantizar el cumplimiento de las normas que regulan la vida escolar.
 		</p>
+		<p>
+			Desde <strong>Fundación Freinet</strong> ofrecemos un servicio de acompañamiento pensado
+			para directivos en ejercicio de la provincia de Córdoba, de todos los niveles y
+			modalidades, tanto de gestión estatal como privada.
+		</p>
+		<p><strong>No estás sólo en esta tarea, ¡nosotros estamos de tu lado!</strong></p>
+		<div class="cta-buttons">
+			<a href="https://forms.gle/Fv8H3ChvqjnE7x6x6" class="btn btn-teal" target="_blank" rel="noopener noreferrer">Contratar servicio</a>
+			<a
+				href="https://wa.me/5493516315102?text=Quiero+m%C3%A1s+informaci%C3%B3n+sobre+el+Programa+de+Acompa%C3%B1amiento+a+la+Funci%C3%B3n+Directiva"
+				class="btn btn-outline-teal"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				Escribinos
+			</a>
+		</div>
 	</section>
 
-	<section id="convivencia-escolar">
-		<span class="eyebrow">Convivencia escolar</span>
-		<h2>Vínculos que sostienen el aprendizaje</h2>
+	<section id="asesoramiento-institucional">
+		<span class="eyebrow">Asesoramiento Institucional</span>
+		<h2>Una mirada integral para fortalecer la gestión y proyectar la escuela</h2>
 		<p>
-			Texto de ejemplo: trabajamos protocolos de convivencia, mediación de conflictos y
-			estrategias para fortalecer el clima escolar entre estudiantes, docentes y familias.
+			El <strong>Servicio de Asesoramiento Institucional de Fundación Freinet</strong> está
+			pensado para acompañar a la institución educativa en su conjunto.
 		</p>
+		<p>
+			Se trata de un espacio de asesoramiento destinado a entidades propietarias, equipos de
+			conducción y referentes institucionales, orientado a analizar la realidad de la escuela,
+			identificar oportunidades de mejora y diseñar estrategias que permitan fortalecer su
+			gestión, sus proyectos y su posicionamiento dentro del sistema educativo.
+		</p>
+		<h3>¿Qué hacemos?</h3>
+		<p>Acompañamos a la institución en el análisis y desarrollo de diferentes dimensiones de su gestión:</p>
+		<div class="info-list">
+			{dimensionesInstitucional.map((item) => (
+				<div class="info-item">
+					<span class="info-icon">{item.icon}</span>
+					<div>
+						<strong>{item.t}</strong>
+						<p>{item.d}</p>
+					</div>
+				</div>
+			))}
+		</div>
+		<p>
+			Queremos conocerte y serte útiles en tu tarea. Concertemos una reunión que nos permita
+			trabajar juntos para que tu escuela destaque y se posicione a nivel local y regional.
+		</p>
+		<a
+			href="https://wa.me/5493516315102?text=Quiero+SOLICITAR+UNA+REUNI%C3%93N+de+Asesoramiento+Institucional"
+			class="btn btn-teal"
+			target="_blank"
+			rel="noopener noreferrer"
+		>
+			Solicitar una reunión
+		</a>
 	</section>
 
-	<section id="bienestar-educativo">
-		<span class="eyebrow">Bienestar educativo</span>
-		<h2>Cuidar a quienes cuidan</h2>
+	<section id="conferencias-en-escuelas">
+		<span class="eyebrow">Conferencias en Escuelas</span>
+		<h2>Temas que inspiran, convocan y transforman</h2>
 		<p>
-			Texto de ejemplo: promovemos el bienestar docente como condición necesaria para sostener
-			procesos de enseñanza de calidad, con espacios de reflexión y prevención del desgaste
-			profesional.
+			<strong>Fundación Freinet</strong> lleva la formación a tu institución mediante charlas y
+			conferencias sobre educación, pensadas para docentes, equipos directivos y comunidades
+			educativas.
 		</p>
-		<a href={base + "contacto"} class="btn btn-teal">Solicitar una reunión</a>
+		<h3>Una conferencia no es solamente una exposición</h3>
+		<p>
+			En Fundación Freinet entendemos la conferencia como una experiencia de formación y
+			reflexión. Por eso buscamos que cada encuentro permita comprender una problemática,
+			revisar prácticas, incorporar nuevas perspectivas y abrir posibilidades de acción.
+		</p>
+		<p>
+			El objetivo es que quienes participan no solamente se lleven información, sino también
+			preguntas, herramientas y nuevas ideas para pensar y transformar sus prácticas.
+		</p>
+		<h3>Temas disponibles</h3>
+		<ul class="temas-list">
+			{temasConferencias.map((tema) => (
+				<li>{tema}</li>
+			))}
+		</ul>
+		<p>¡Nos encantará poder visitarte pronto y compartir juntos el conocimiento! Contactanos para más información.</p>
+		<a
+			href="https://wa.me/5493516315102?text=Quiero+informaci%C3%B3n+sobre+CONFERENCIAS+EN+TU+ESCUELA"
+			class="btn btn-teal btn-whatsapp"
+			target="_blank"
+			rel="noopener noreferrer"
+		>
+			<Icon name="whatsapp" />
+			Hablemos
+		</a>
 	</section>
 </SectionLayout>
 
@@ -117,5 +231,71 @@ const pasos = [
 	.step p {
 		margin: 0;
 		font-size: 0.9rem;
+	}
+
+	section h3 {
+		font-family: var(--font-sans);
+		font-size: 1.1rem;
+		color: var(--teal-900);
+		margin: 24px 0 10px;
+	}
+
+	.cta-buttons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+		margin-top: 22px;
+	}
+
+	.info-list {
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+		margin-top: 18px;
+	}
+
+	.info-item {
+		display: flex;
+		gap: 16px;
+		align-items: flex-start;
+		background: var(--teal-50);
+		border-radius: var(--radius);
+		padding: 16px 18px;
+	}
+
+	.info-icon {
+		font-size: 1.4rem;
+		line-height: 1;
+		flex-shrink: 0;
+	}
+
+	.info-item strong {
+		display: block;
+		color: var(--teal-900);
+		margin-bottom: 2px;
+	}
+
+	.info-item p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.temas-list {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 8px 24px;
+		margin: 14px 0 22px;
+		padding-left: 20px;
+	}
+
+	.btn-whatsapp {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.btn-whatsapp :global(svg) {
+		width: 18px;
+		height: 18px;
 	}
 </style>

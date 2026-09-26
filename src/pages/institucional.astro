@@ -16,9 +16,9 @@ const autoridades = [
 ];
 
 const alianzas = [
-	{ nombre: "Fundación Senda Azul", desc: "Capacitadoras invitadas en programas de bienestar y convivencia escolar." },
-	{ nombre: "Incasup", desc: "Espacio institucional sede de encuentros presenciales de formación." },
-	{ nombre: "Ministerio de Educación de Córdoba", desc: "Reconocimiento de puntaje docente para nuestros trayectos formativos." },
+	{ nombre: "Ministerio de Educación de Córdoba", desc: "Reconocimiento oficial y otorgamiento de puntaje docente para nuestras capacitaciones.", logo: base + "images/alianzas/ministerio-educacion.png", logoClass: "mini-card-logo-lg" },
+	{ nombre: "Fundación Senda Azul", desc: "Convenio de cooperación para el desarrollo de actividades socioeducativas en relación con la inclusión de personas con discapacidad.", logo: base + "images/alianzas/senda-azul.png" },
+	{ nombre: "Instituto Católico Superior", desc: "Convenio de cooperación para el uso de instalaciones y para la formación docente pos-inicial y continua.", logo: base + "images/alianzas/instituto-catolico-superior.png" },
 ];
 
 const hitos = [
@@ -94,8 +94,11 @@ const hitos = [
 		<div class="card-grid">
 			{alianzas.map((al) => (
 				<div class="mini-card">
-					<strong>{al.nombre}</strong>
-					<span>{al.desc}</span>
+					<img src={al.logo} alt={al.nombre} class={`mini-card-logo ${al.logoClass ?? ""}`} />
+					<div class="mini-card-text">
+						<strong>{al.nombre}</strong>
+						<span>{al.desc}</span>
+					</div>
 				</div>
 			))}
 		</div>
@@ -118,7 +121,7 @@ const hitos = [
 <style>
 	.card-grid {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: 1fr;
 		gap: 16px;
 		margin-top: 20px;
 	}
@@ -128,6 +131,13 @@ const hitos = [
 		border: 1px solid var(--teal-100);
 		border-radius: var(--radius);
 		padding: 16px 18px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 18px;
+	}
+
+	.mini-card-text {
 		display: flex;
 		flex-direction: column;
 		gap: 4px;
@@ -142,6 +152,19 @@ const hitos = [
 	.mini-card span {
 		font-size: 0.88rem;
 		color: var(--ink-soft);
+	}
+
+	.mini-card-logo {
+		height: 134px;
+		width: auto;
+		max-width: 269px;
+		object-fit: contain;
+		flex-shrink: 0;
+	}
+
+	.mini-card-logo-lg {
+		height: 202px;
+		max-width: 403px;
 	}
 
 	.autoridad-foto {
