@@ -18,15 +18,17 @@ const navItems = [
 	<section id="contacto-form">
 		<span class="eyebrow">Contacto</span>
 		<h2>Escribinos</h2>
-		<form class="contact-form" onsubmit="return false;">
+		<form class="contact-form" action="https://formspree.io/f/fundacionfreinetcba@gmail.com" method="POST">
+			<input type="hidden" name="_subject" value="Nueva consulta desde la web — Fundación Freinet" />
+			<input type="text" name="_gotcha" style="display: none" tabindex="-1" autocomplete="off" />
 			<div class="form-row">
 				<label>
 					Nombre y apellido
-					<input type="text" name="nombre" placeholder="Ej: Ana Pérez" />
+					<input type="text" name="nombre" placeholder="Ej: Ana Pérez" required />
 				</label>
 				<label>
 					Email
-					<input type="email" name="email" placeholder="nombre@correo.com" />
+					<input type="email" name="email" placeholder="nombre@correo.com" required />
 				</label>
 			</div>
 			<label>
@@ -35,7 +37,7 @@ const navItems = [
 			</label>
 			<label>
 				Mensaje
-				<textarea name="mensaje" rows="4" placeholder="Contanos en qué podemos ayudarte"></textarea>
+				<textarea name="mensaje" rows="4" placeholder="Contanos en qué podemos ayudarte" required></textarea>
 			</label>
 			<button type="submit" class="btn btn-primary">Enviar mensaje</button>
 		</form>
