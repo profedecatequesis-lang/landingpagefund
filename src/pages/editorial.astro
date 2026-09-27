@@ -1,11 +1,12 @@
 ---
 const base = import.meta.env.BASE_URL;
 import SectionLayout from "../layouts/SectionLayout.astro";
+import Icon from "../components/Icon.astro";
 
 const navItems = [
 	{ id: "publicaciones", label: "Publicaciones" },
-	{ id: "materiales-didacticos", label: "Materiales didácticos" },
 	{ id: "servicios-editoriales", label: "Servicios editoriales" },
+	{ id: "convertite-en-autor", label: "¡Convertite en autor de una obra colaborativa!" },
 ];
 
 const publicaciones = [
@@ -13,11 +14,44 @@ const publicaciones = [
 		titulo: "Entre voces, puentes y aulas",
 		tipo: "Libro colaborativo",
 		anio: "2025",
+		descripcion: "Esta producción presenta proyectos y reflexiones sobre la aplicación del Programa TransFORMAR@Cba en diferentes escuelas de nivel inicial, primario y secundario en la provincia de Córdoba.",
 		imagen: base + "images/publicaciones/entre-voces-puentes-y-aulas.png",
 	},
-	{ titulo: "Cuadernillo de Convivencia Escolar", tipo: "Material de aula", anio: "2025" },
-	{ titulo: "Guía de Bienestar Educativo para Equipos Directivos", tipo: "Guía de gestión", anio: "2025" },
-	{ titulo: "Freinet hoy: técnicas activas para el aula", tipo: "Publicación pedagógica", anio: "2024" },
+	{
+		titulo: "Presencias transformadoras",
+		tipo: "Libro",
+		anio: "2025",
+		descripcion: "Un libro que promueve el liderazgo docente y directivo desde la perspectiva del Bienestar Educativo.",
+		imagen: base + "images/publicaciones/presencias-transformadoras.png",
+	},
+	{
+		titulo: "La innovación pedagógica como construcción colectiva",
+		tipo: "Libro colaborativo",
+		anio: "2025",
+		descripcion: "Una obra que recupera proyectos innovadores implementados en escuelas cordobesas con foco en la mejora educativa.",
+		imagen: base + "images/publicaciones/innovacion-pedagogica-construccion-colectiva.png",
+	},
+	{
+		titulo: "Proyectando Escuela",
+		tipo: "Libro colaborativo",
+		anio: "2025",
+		descripcion: "Una obra que reúne propuestas para trabajar la normativa y legislación escolar en las escuelas desde la prevención y el enfoque de derechos.",
+		imagen: base + "images/publicaciones/proyectando-escuela.png",
+	},
+	{
+		titulo: "Una gestión con voz propia",
+		tipo: "Producción colaborativa",
+		anio: "2025",
+		descripcion: "Una producción colaborativa que pone en el centro de la escena la experiencia de directivos de diferentes niveles y modalidades en la provincia de Córdoba.",
+		imagen: base + "images/publicaciones/una-gestion-con-voz-propia.png",
+	},
+	{
+		titulo: "Puzzle",
+		tipo: "Gestión directiva y práctica docente",
+		anio: "2025",
+		descripcion: "Una obra que presenta el trabajo colaborativo en la escuela como su gran fortaleza, junto con estrategias para implementarlo exitosamente.",
+		imagen: base + "images/publicaciones/puzzle.png",
+	},
 ];
 
 const servicios = [
@@ -31,11 +65,29 @@ const servicios = [
 	title="Servicios Editoriales — Fundación Freinet"
 	description="Publicaciones, materiales didácticos y servicios editoriales de la Fundación Freinet."
 	eyebrow="Editorial"
-	heroTitle="Materiales pensados para el aula y la gestión"
-	heroDescription="Elaboramos y acompañamos publicaciones pedagógicas, guías de gestión y materiales didácticos junto a especialistas invitados."
+	heroTitle="“Querer imprimir es querer comunicar a gran escala.”"
+	heroDescription="— Célestin Freinet"
 	theme="deep"
 	navItems={navItems}
 >
+	<section id="intro" class="editorial-intro">
+		<p>
+			En Fundación Freinet acompañamos la creación, edición y publicación de proyectos
+			educativos, académicos e institucionales, siguiendo la tradición iniciada por
+			nuestro referente Célestin Freinet.
+		</p>
+		<p>
+			Las ideas, proyectos, propuestas e iniciativas no han sido creadas para terminar
+			sus vidas en un cajón o arrumbadas en una biblioteca sin que nadie las lea; antes
+			bien, su propósito es inspirar a otros a seguir experimentando e impactando en la
+			sociedad.
+		</p>
+		<p>
+			Ofrecemos servicios de corrección, edición, diseño y asesoramiento editorial,
+			adaptados a las necesidades de los autores e instituciones.
+		</p>
+	</section>
+
 	<section id="publicaciones">
 		<span class="eyebrow">Publicaciones</span>
 		<h2>Catálogo</h2>
@@ -52,25 +104,27 @@ const servicios = [
 					<div class="pub-body">
 						<span class="pub-tipo">{p.tipo} · {p.anio}</span>
 						<h3>{p.titulo}</h3>
+						{p.descripcion && <p class="pub-desc">{p.descripcion}</p>}
 					</div>
 				</article>
 			))}
 		</div>
 	</section>
 
-	<section id="materiales-didacticos">
-		<span class="eyebrow">Materiales didácticos</span>
-		<h2>Recursos para el aula</h2>
-		<p>
-			Texto de ejemplo: desarrollamos cuadernillos, fichas y secuencias didácticas que
-			acompañan nuestros cursos y que también pueden adaptarse a la realidad de cada
-			institución.
-		</p>
-	</section>
-
 	<section id="servicios-editoriales">
 		<span class="eyebrow">Servicios editoriales</span>
-		<h2>Qué ofrecemos</h2>
+		<h2>Servicios Editoriales</h2>
+		<p>
+			Te acompañamos en la publicación de obras y materiales, ya sea como autor único o
+			como autor institucional.
+		</p>
+		<p>
+			Nuestros servicios incluyen el asesoramiento, corrección, edición, diagramación,
+			registro en organismos oficiales, trámite de reconocimiento de propiedad intelectual
+			(derecho de autor), impresión en pequeñas y grandes tiradas, publicidad, difusión y
+			distribución.
+		</p>
+		<p>Tenemos propuestas especiales para instituciones educativas, no dudes en consultarnos.</p>
 		<div class="service-grid">
 			{servicios.map((s) => (
 				<div class="service-card">
@@ -79,11 +133,80 @@ const servicios = [
 				</div>
 			))}
 		</div>
-		<a href={base + "contacto"} class="btn btn-teal">Consultar por un proyecto editorial</a>
+		<a
+			href="https://wa.me/5493516315102?text=Quiero+informaci%C3%B3n+sobre+los+SERVICIOS+EDITORIALES&utm_source=chatgpt.com"
+			class="btn btn-teal btn-whatsapp"
+			target="_blank"
+			rel="noopener noreferrer"
+		>
+			<Icon name="whatsapp" />
+			Quiero más información
+		</a>
+	</section>
+
+	<section id="convertite-en-autor">
+		<span class="eyebrow">Convocatoria</span>
+		<h2>¡Convertite en autor de una obra colaborativa!</h2>
+		<p>
+			En la Fundación Freinet promovemos la escritura colaborativa como vía privilegiada
+			para difundir las ideas y proyectos de los docentes y directivos.
+		</p>
+		<h3>¿Cómo funciona?</h3>
+		<ol class="steps-list">
+			<li>
+				<span class="step-icon" aria-hidden="true">✍️</span>
+				<span><strong>Proponés tu aporte:</strong> presentás una experiencia, reflexión, artículo o producción vinculada con la temática de la obra.</span>
+			</li>
+			<li>
+				<span class="step-icon" aria-hidden="true">📖</span>
+				<span><strong>Evaluamos y acompañamos:</strong> el equipo editorial revisa el material y brinda orientaciones para su adecuación y edición.</span>
+			</li>
+			<li>
+				<span class="step-icon" aria-hidden="true">🤝</span>
+				<span><strong>Construimos colectivamente:</strong> tu aporte se integra junto con el de otros autores en una obra común.</span>
+			</li>
+			<li>
+				<span class="step-icon" aria-hidden="true">🎨</span>
+				<span><strong>Editamos y publicamos:</strong> Fundación Freinet realiza la edición, diseño y preparación de la obra para su publicación.</span>
+			</li>
+			<li>
+				<span class="step-icon" aria-hidden="true">🌎</span>
+				<span><strong>Compartimos saberes:</strong> la obra final permite visibilizar y poner en circulación experiencias y conocimientos construidos desde el campo educativo.</span>
+			</li>
+		</ol>
+		<p>
+			Una oportunidad para escribir, compartir y formar parte de una producción colectiva
+			que deja huella en la educación.
+		</p>
+		<p>Te invitamos a sumarte a nuestra convocatoria vigente para Setiembre-Octubre.</p>
+		<div class="cta-group">
+			<a href="https://forms.gle/X7m2KXs4AiJBQQxK8" class="btn btn-teal" target="_blank" rel="noopener noreferrer">¡Quiero sumarme!</a>
+			<a
+				href="https://wa.me/5493516315102?text=QUIERO+INFORMACION+SOBRE+LA+PUBLICACION+COLABORATIVA&utm_source=chatgpt.com"
+				class="btn btn-outline-teal btn-whatsapp"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<Icon name="whatsapp" />
+				Contactanos
+			</a>
+		</div>
 	</section>
 </SectionLayout>
 
 <style>
+	.editorial-intro p {
+		max-width: 70ch;
+		font-size: 1rem;
+		line-height: 1.65;
+		color: var(--ink-700, #334155);
+		margin: 0 0 16px;
+	}
+
+	.editorial-intro p:last-child {
+		margin-bottom: 0;
+	}
+
 	.pub-grid {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
@@ -149,6 +272,13 @@ const servicios = [
 		margin: 12px 0 0;
 	}
 
+	.pub-desc {
+		font-size: 0.88rem;
+		line-height: 1.5;
+		color: var(--ink-600, #475569);
+		margin: 8px 0 0;
+	}
+
 	.service-grid {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
@@ -172,6 +302,58 @@ const servicios = [
 	.service-card p {
 		margin: 0;
 		font-size: 0.88rem;
+	}
+
+	#servicios-editoriales > p,
+	#convertite-en-autor > p {
+		max-width: 70ch;
+		font-size: 1rem;
+		line-height: 1.65;
+		color: var(--ink-700, #334155);
+		margin: 0 0 14px;
+	}
+
+	#convertite-en-autor h3 {
+		margin: 24px 0 12px;
+	}
+
+	.steps-list {
+		list-style: none;
+		margin: 0 0 20px;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	.steps-list li {
+		display: flex;
+		align-items: flex-start;
+		gap: 12px;
+		max-width: 70ch;
+	}
+
+	.step-icon {
+		font-size: 1.2rem;
+		line-height: 1.5;
+	}
+
+	.steps-list li span:last-child {
+		line-height: 1.6;
+		color: var(--ink-700, #334155);
+	}
+
+	.cta-group {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+		margin-top: 8px;
+	}
+
+	.btn-whatsapp {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
 	}
 
 	@media (max-width: 700px) {
