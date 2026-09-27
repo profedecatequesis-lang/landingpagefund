@@ -13,28 +13,28 @@ const publicaciones = [
 	{
 		titulo: "Entre voces, puentes y aulas",
 		tipo: "Libro colaborativo",
-		anio: "2025",
+		anio: "2026",
 		descripcion: "Esta producción presenta proyectos y reflexiones sobre la aplicación del Programa TransFORMAR@Cba en diferentes escuelas de nivel inicial, primario y secundario en la provincia de Córdoba.",
 		imagen: base + "images/publicaciones/entre-voces-puentes-y-aulas.png",
 	},
 	{
 		titulo: "Presencias transformadoras",
 		tipo: "Libro",
-		anio: "2025",
+		anio: "2024",
 		descripcion: "Un libro que promueve el liderazgo docente y directivo desde la perspectiva del Bienestar Educativo.",
 		imagen: base + "images/publicaciones/presencias-transformadoras.png",
 	},
 	{
 		titulo: "La innovación pedagógica como construcción colectiva",
 		tipo: "Libro colaborativo",
-		anio: "2025",
+		anio: "2023",
 		descripcion: "Una obra que recupera proyectos innovadores implementados en escuelas cordobesas con foco en la mejora educativa.",
 		imagen: base + "images/publicaciones/innovacion-pedagogica-construccion-colectiva.png",
 	},
 	{
 		titulo: "Proyectando Escuela",
 		tipo: "Libro colaborativo",
-		anio: "2025",
+		anio: "2022",
 		descripcion: "Una obra que reúne propuestas para trabajar la normativa y legislación escolar en las escuelas desde la prevención y el enfoque de derechos.",
 		imagen: base + "images/publicaciones/proyectando-escuela.png",
 	},
@@ -54,11 +54,6 @@ const publicaciones = [
 	},
 ];
 
-const servicios = [
-	{ titulo: "Corrección pedagógica", desc: "Revisión de materiales didácticos y secuencias de enseñanza." },
-	{ titulo: "Diseño de cuadernillos", desc: "Elaboración de materiales para cursos y capacitaciones propias." },
-	{ titulo: "Edición de publicaciones institucionales", desc: "Acompañamiento integral desde el texto hasta la impresión." },
-];
 ---
 
 <SectionLayout
@@ -125,14 +120,6 @@ const servicios = [
 			distribución.
 		</p>
 		<p>Tenemos propuestas especiales para instituciones educativas, no dudes en consultarnos.</p>
-		<div class="service-grid">
-			{servicios.map((s) => (
-				<div class="service-card">
-					<strong>{s.titulo}</strong>
-					<p>{s.desc}</p>
-				</div>
-			))}
-		</div>
 		<a
 			href="https://wa.me/5493516315102?text=Quiero+informaci%C3%B3n+sobre+los+SERVICIOS+EDITORIALES&utm_source=chatgpt.com"
 			class="btn btn-teal btn-whatsapp"
@@ -279,31 +266,6 @@ const servicios = [
 		margin: 8px 0 0;
 	}
 
-	.service-grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 16px;
-		margin: 20px 0 24px;
-	}
-
-	.service-card {
-		background: var(--teal-50);
-		border: 1px solid var(--teal-100);
-		border-radius: var(--radius);
-		padding: 18px;
-	}
-
-	.service-card strong {
-		display: block;
-		color: var(--teal-900);
-		margin-bottom: 6px;
-	}
-
-	.service-card p {
-		margin: 0;
-		font-size: 0.88rem;
-	}
-
 	#servicios-editoriales > p,
 	#convertite-en-autor > p {
 		max-width: 70ch;
@@ -357,8 +319,7 @@ const servicios = [
 	}
 
 	@media (max-width: 700px) {
-		.pub-grid,
-		.service-grid {
+		.pub-grid {
 			grid-template-columns: 1fr;
 		}
 	}
