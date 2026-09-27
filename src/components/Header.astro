@@ -79,30 +79,133 @@ const navLinks = [
 
 	<div class="navbar">
 		<div class="container navbar-inner">
-			<nav class="mainnav" aria-label="Navegación principal">
-				<ul>
-					{navLinks.map((link) => (
-						<li class="has-dropdown">
-							<a href={link.href}>{link.label}</a>
-							<div class="dropdown">
-								<ul>
-									{link.children.map((child) => (
-										<li><a href={child.href}>{child.label}</a></li>
-									))}
-								</ul>
-							</div>
-						</li>
-					))}
-				</ul>
-			</nav>
+			<button
+				type="button"
+				class="nav-toggle"
+				id="navToggle"
+				aria-expanded="false"
+				aria-controls="mobileNavPanel"
+				aria-label="Abrir menú de navegación"
+			>
+				<span class="nav-toggle-bar"></span>
+				<span class="nav-toggle-bar"></span>
+				<span class="nav-toggle-bar"></span>
+			</button>
 
-			<form class="searchbox" role="search" onsubmit="return false;">
-				<input type="text" placeholder="Escribir texto a buscar..." aria-label="Buscar" />
-				<button type="submit" aria-label="Buscar">🔍</button>
-			</form>
+			<div class="nav-panel" id="mobileNavPanel">
+				<nav class="mainnav" aria-label="Navegación principal">
+					<ul>
+						{navLinks.map((link, i) => (
+							<li class="has-dropdown">
+								<div class="nav-item-row">
+									<a href={link.href}>{link.label}</a>
+									<button
+										type="button"
+										class="dropdown-toggle"
+										aria-expanded="false"
+										aria-controls={`dropdown-${i}`}
+										aria-label={`Mostrar submenú de ${link.label}`}
+									>
+										<span class="chevron-icon" aria-hidden="true">▾</span>
+									</button>
+								</div>
+								<div class="dropdown" id={`dropdown-${i}`}>
+									<ul>
+										{link.children.map((child) => (
+											<li><a href={child.href}>{child.label}</a></li>
+										))}
+									</ul>
+								</div>
+							</li>
+						))}
+					</ul>
+				</nav>
+
+				<form class="searchbox" role="search" onsubmit="return false;">
+					<input type="text" placeholder="Escribir texto a buscar..." aria-label="Buscar" />
+					<button type="submit" aria-label="Buscar">🔍</button>
+				</form>
+			</div>
 		</div>
 	</div>
 </header>
+
+<script>
+	const navToggle = document.getElementById("navToggle");
+	const navPanel = document.getElementById("mobileNavPanel");
+
+	function closePanel() {
+		navToggle?.classList.remove("is-open");
+		navToggle?.setAttribute("aria-expanded", "false");
+		navPanel?.classList.remove("is-open");
+	}
+
+	function togglePanel() {
+		const isOpen = navPanel?.classList.toggle("is-open") ?? false;
+		navToggle?.classList.toggle("is-open", isOpen);
+		navToggle?.setAttribute("aria-expanded", isOpen ? "true" : "false");
+	}
+
+	navToggle?.addEventListener("click", (e) => {
+		e.stopPropagation();
+		togglePanel();
+	});
+
+	const dropdownToggles = Array.from(document.querySelectorAll<HTMLElement>(".dropdown-toggle"));
+	dropdownToggles.forEach((btn) => {
+		btn.addEventListener("click", () => {
+			const li = btn.closest(".has-dropdown");
+			const dropdown = document.getElementById(btn.getAttribute("aria-controls") ?? "");
+			const isExpanded = li?.classList.toggle("is-expanded") ?? false;
+			btn.setAttribute("aria-expanded", isExpanded ? "true" : "false");
+			if (dropdown instanceof HTMLElement) {
+				dropdown.style.maxHeight = isExpanded ? dropdown.scrollHeight + "px" : "";
+				if (isExpanded) {
+					dropdown.removeAttribute("inert");
+				} else {
+					dropdown.setAttribute("inert", "");
+				}
+			}
+		});
+	});
+
+	const panelLinks = Array.from(navPanel?.querySelectorAll<HTMLAnchorElement>("a") ?? []);
+	panelLinks.forEach((link) => {
+		link.addEventListener("click", () => {
+			closePanel();
+		});
+	});
+
+	document.addEventListener("click", (e) => {
+		if (!navPanel?.classList.contains("is-open")) return;
+		const target = e.target as Node;
+		if (navPanel.contains(target) || navToggle?.contains(target)) return;
+		closePanel();
+	});
+
+	document.addEventListener("keydown", (e) => {
+		if (e.key === "Escape") {
+			closePanel();
+			navToggle?.focus();
+		}
+	});
+
+	window.addEventListener("resize", () => {
+		if (window.innerWidth > 900) {
+			closePanel();
+			document.querySelectorAll<HTMLElement>(".has-dropdown.is-expanded").forEach((li) => {
+				li.classList.remove("is-expanded");
+				const dropdown = li.querySelector<HTMLElement>(".dropdown");
+				if (dropdown) {
+					dropdown.style.maxHeight = "";
+					dropdown.setAttribute("inert", "");
+				}
+				const toggle = li.querySelector<HTMLElement>(".dropdown-toggle");
+				toggle?.setAttribute("aria-expanded", "false");
+			});
+		}
+	});
+</script>
 
 <style>
 	.site-header {
@@ -199,6 +302,48 @@ const navLinks = [
 		gap: 20px;
 	}
 
+	.nav-toggle {
+		display: none;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 5px;
+		width: 40px;
+		height: 40px;
+		background: rgba(255, 255, 255, 0.12);
+		border: none;
+		border-radius: 2px;
+		cursor: pointer;
+		padding: 0;
+		flex-shrink: 0;
+		align-self: center;
+		margin: 10px 0;
+	}
+
+	.nav-toggle-bar {
+		display: block;
+		width: 20px;
+		height: 2px;
+		background: #fff;
+		transition: transform 0.2s ease, opacity 0.2s ease;
+	}
+
+	.nav-toggle.is-open .nav-toggle-bar:nth-child(1) {
+		transform: translateY(7px) rotate(45deg);
+	}
+
+	.nav-toggle.is-open .nav-toggle-bar:nth-child(2) {
+		opacity: 0;
+	}
+
+	.nav-toggle.is-open .nav-toggle-bar:nth-child(3) {
+		transform: translateY(-7px) rotate(-45deg);
+	}
+
+	.nav-panel {
+		display: contents;
+	}
+
 	.mainnav ul {
 		display: flex;
 		list-style: none;
@@ -210,7 +355,15 @@ const navLinks = [
 		position: relative;
 	}
 
-	.mainnav > ul > li > a {
+	.nav-item-row {
+		display: contents;
+	}
+
+	.dropdown-toggle {
+		display: none;
+	}
+
+	.mainnav > ul > li > .nav-item-row > a {
 		display: block;
 		padding: 16px 20px;
 		text-decoration: none;
@@ -221,8 +374,8 @@ const navLinks = [
 		color: #fff;
 	}
 
-	.has-dropdown:hover > a,
-	.has-dropdown:focus-within > a {
+	.has-dropdown:hover .nav-item-row > a,
+	.has-dropdown:focus-within .nav-item-row > a {
 		background: var(--teal-700);
 	}
 
@@ -304,15 +457,87 @@ const navLinks = [
 	}
 
 	@media (max-width: 900px) {
-		.searchbox {
+		.navbar-inner {
+			flex-wrap: wrap;
+		}
+
+		.nav-toggle {
+			display: flex;
+		}
+
+		.nav-panel {
 			display: none;
+			width: 100%;
+			flex-direction: column;
 		}
+
+		.nav-panel.is-open {
+			display: flex;
+		}
+
+		.searchbox {
+			order: -1;
+			display: flex;
+			width: 100%;
+			margin: 12px 0;
+		}
+
+		.searchbox input {
+			flex: 1;
+			width: auto;
+		}
+
 		.mainnav {
-			overflow-x: auto;
+			width: 100%;
 		}
-		.mainnav > ul > li > a {
-			padding: 14px 14px;
-			white-space: nowrap;
+
+		.mainnav ul {
+			flex-direction: column;
+		}
+
+		.nav-item-row {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.mainnav > ul > li > .nav-item-row > a {
+			flex: 1;
+			padding: 14px 16px;
+			white-space: normal;
+		}
+
+		.dropdown-toggle {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			background: transparent;
+			border: none;
+			color: #fff;
+			padding: 14px 16px;
+			cursor: pointer;
+		}
+
+		.chevron-icon {
+			display: inline-block;
+			transition: transform 0.2s ease;
+		}
+
+		.has-dropdown.is-expanded .chevron-icon {
+			transform: rotate(180deg);
+		}
+
+		.dropdown {
+			position: static;
+			opacity: 1;
+			visibility: visible;
+			transform: none;
+			border: none;
+			box-shadow: none;
+			min-width: 0;
+			max-height: 0;
+			overflow: hidden;
+			transition: max-height 0.2s ease;
 		}
 	}
 
