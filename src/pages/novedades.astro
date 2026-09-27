@@ -1,10 +1,12 @@
 ---
 import SectionLayout from "../layouts/SectionLayout.astro";
+import Icon from "../components/Icon.astro";
+
+const base = import.meta.env.BASE_URL;
 
 const navItems = [
 	{ id: "noticias", label: "Noticias" },
 	{ id: "redes-sociales", label: "Redes sociales" },
-	{ id: "audiovisuales", label: "Audiovisuales" },
 	{ id: "proximas-convocatorias", label: "Próximas convocatorias" },
 ];
 
@@ -12,52 +14,70 @@ const noticias = [
 	{
 		tag: "Institucional",
 		theme: "teal",
-		title: "Segundo encuentro del curso de Gestión Directiva",
-		excerpt: "Más de 110 colegas de toda la provincia continúan capacitándose junto a Incasup.",
-		fecha: "20 de agosto de 2026",
+		title: "Celebramos el 70° aniversario del Instituto Católico Superior",
+		excerpt:
+			"Con una Misa presidida por S.E.R. cardenal Ángel Sixto Rossi; también, con un Acto Académico que contó con la presencia de la Dra. Gabriela Peña, Representante Legal de la institución, directivos, profesores, ex profesores, estudiantes, familias y amigos.",
+		fecha: "Septiembre de 2026",
+		images: [
+			base + "images/noticias/70-aniversario-misa.webp",
+			base + "images/noticias/70-aniversario-acto-academico.webp",
+			base + "images/noticias/70-aniversario-placa.png",
+		],
 	},
 	{
 		tag: "Formación",
 		theme: "coral",
-		title: "Abrimos inscripción a un nuevo ciclo de seminarios",
-		excerpt: "Propuestas breves con puntaje, pensadas para equipos docentes y de conducción.",
-		fecha: "12 de agosto de 2026",
+		title:
+			"Finalizamos nuestro curso “Gestión Directiva: Inclusión y Convivencia desde el Enfoque del Bienestar Educativo”",
+		excerpt:
+			"Superamos los inscriptos del curso anterior y nos proyectamos a seguir creciendo en el último trimestre del año.",
+		fecha: "Septiembre de 2026",
+		images: [
+			base + "images/noticias/gestion-directiva-equipo.png",
+			base + "images/noticias/gestion-directiva-cierre.png",
+		],
 	},
 	{
-		tag: "Comunidad",
+		tag: "Asesoramiento",
 		theme: "mustard",
-		title: "Alianza con Fundación Senda Azul",
-		excerpt: "Sumamos especialistas invitadas para acompañar nuestros programas de bienestar educativo.",
-		fecha: "3 de agosto de 2026",
+		title: "Presentamos nuevos servicios y programas para acompañarte en tu tarea cotidiana",
+		excerpt:
+			"Para docentes y directivos de escuelas cordobesas. Ingresá en esta sección para no perderte detalle de estas iniciativas.",
+		fecha: "Septiembre de 2026",
+		href: base + "asesoramiento",
 	},
 	{
 		tag: "Editorial",
 		theme: "deep",
-		title: "Entre voces, puentes y aulas: un libro colaborativo sobre educación para Transformar Córdoba",
-		excerpt: "Presentamos nuestra última publicación destinada a recuperar la experiencia de docentes y directivos de toda la provincia de Córdoba en pos de mejorar la calidad de la enseñanza y de la gestión.",
-		fecha: "28 de julio de 2026",
+		title: "Ampliamos la inscripción para la segunda publicación colaborativa del 2026",
+		excerpt:
+			"Ingresá en esta sección para formar parte de esta iniciativa que, además, te permite sumar puntaje por publicación (*). (*) Conforme al criterio y normativa vigente de cada Junta de Clasificación de la Provincia de Córdoba.",
+		fecha: "Septiembre de 2026",
+		href: base + "editorial",
 	},
 ];
 
 const convocatorias = [
-	{ fecha: "Sáb. 3/10", titulo: "Evaluación final — Gestión Directiva" },
-	{ fecha: "Lun. 12/10", titulo: "Apertura de inscripción — Ciclo de seminarios 2027" },
-	{ fecha: "Sáb. 7/11", titulo: "Jornada de cierre y entrega de certificados" },
+	{
+		fecha: "Sáb. 3/10",
+		titulo:
+			"Evaluación Final – Curso de Gestión Directiva: Inclusión y Convivencia desde el Enfoque del Bienestar Educativo",
+	},
+	{
+		fecha: "Jue. 7/10",
+		titulo:
+			"1er Encuentro Sincrónico de la Preparación para rendir Concursos Directivos en la Provincia de Córdoba",
+	},
+	{ fecha: "Mar. 15/10", titulo: "Webinario de Legislación y Normativa Escolar por Meet" },
 ];
 
-const videos = [
-	{ title: "Testimonios del curso de Gestión Directiva", duracion: "4:12" },
-	{ title: "Así fue el 2º encuentro junto a Incasup", duracion: "2:35" },
-	{ title: "Freinet hoy: entrevista a nuestras capacitadoras", duracion: "6:48" },
-];
 ---
 
 <SectionLayout
 	title="Novedades — Fundación Freinet"
 	description="Noticias, redes sociales y próximas convocatorias de la Fundación Freinet."
 	eyebrow="Novedades"
-	heroTitle="Lo que está pasando en la Fundación"
-	heroDescription="Noticias institucionales, novedades de nuestras redes sociales y el calendario de próximas convocatorias."
+	heroDescription="Enterate de todas las novedades relacionadas con la vida de la Fundación en la Comunidad Educativa Cordobesa. Seguinos en nuestras redes y no te pierdas detalle de todo lo que hacemos."
 	theme="teal"
 	navItems={navItems}
 >
@@ -72,8 +92,18 @@ const videos = [
 					</div>
 					<div class="news-content">
 						<span class="news-date">{n.fecha}</span>
-						<h3>{n.title}</h3>
+						<h3>{n.href ? <a href={n.href}>{n.title}</a> : n.title}</h3>
 						<p>{n.excerpt}</p>
+						{n.href && (
+							<a href={n.href} class="news-link">Ver más ›</a>
+						)}
+						{n.images && (
+							<div class="news-gallery">
+								{n.images.map((src) => (
+									<img src={src} alt={n.title} loading="lazy" />
+								))}
+							</div>
+						)}
 					</div>
 				</article>
 			))}
@@ -88,31 +118,30 @@ const videos = [
 			educadores que nos acompaña.
 		</p>
 		<div class="social-stats">
-			<div class="social-card">
-				<strong>844+</strong>
-				<span>Seguidores en Facebook</span>
-			</div>
-			<div class="social-card">
-				<strong>5.700+</strong>
-				<span>Seguidores en Instagram</span>
-			</div>
-		</div>
-	</section>
-
-	<section id="audiovisuales">
-		<span class="eyebrow">Audiovisuales</span>
-		<h2>Videos y registros</h2>
-		<p>Material audiovisual de nuestros encuentros, testimonios y entrevistas.</p>
-		<div class="video-grid">
-			{videos.map((v) => (
-				<a href="#" class="video-card">
-					<span class="video-card-thumb">
-						<span class="play-icon" aria-hidden="true">▶</span>
-					</span>
-					<span class="video-card-title">{v.title}</span>
-					<span class="video-card-duration">{v.duracion}</span>
-				</a>
-			))}
+			<a
+				class="social-card theme-facebook"
+				href="https://www.facebook.com/fundacionfreinet"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<span class="social-icon"><Icon name="facebook" /></span>
+				<span class="social-info">
+					<strong>844+</strong>
+					<span>Seguidores en Facebook</span>
+				</span>
+			</a>
+			<a
+				class="social-card theme-instagram"
+				href="https://www.instagram.com/fundacionfreinet"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<span class="social-icon"><Icon name="instagram" /></span>
+				<span class="social-info">
+					<strong>5.700+</strong>
+					<span>Seguidores en Instagram</span>
+				</span>
+			</a>
 		</div>
 	</section>
 
@@ -186,6 +215,44 @@ const videos = [
 		font-size: 0.9rem;
 	}
 
+	.news-content h3 a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.news-content h3 a:hover {
+		color: var(--coral);
+	}
+
+	.news-link {
+		display: inline-block;
+		margin-top: 10px;
+		font-size: 0.85rem;
+		font-weight: 700;
+		color: var(--teal-700);
+		text-decoration: none;
+	}
+
+	.news-link:hover {
+		color: var(--coral);
+	}
+
+	.news-gallery {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 10px;
+		margin-top: 14px;
+	}
+
+	.news-gallery img {
+		width: 100%;
+		height: 130px;
+		object-fit: contain;
+		background: var(--teal-50);
+		border-radius: var(--radius);
+		border: 1px solid var(--border);
+	}
+
 	.social-stats {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
@@ -195,69 +262,60 @@ const videos = [
 	}
 
 	.social-card {
+		display: flex;
+		align-items: center;
+		gap: 16px;
 		background: var(--teal-50);
 		border: 1px solid var(--teal-100);
 		border-radius: var(--radius);
-		padding: 22px;
-		text-align: center;
-	}
-
-	.social-card strong {
-		display: block;
-		font-family: var(--font-sans);
-		font-weight: 800;
-		font-size: 1.6rem;
-		color: var(--teal-800);
-	}
-
-	.social-card span {
-		font-size: 0.82rem;
-		color: var(--ink-soft);
-	}
-
-	.video-grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 18px;
-		margin-top: 20px;
-	}
-
-	.video-card {
-		display: flex;
-		flex-direction: column;
+		padding: 20px 22px;
 		text-decoration: none;
-		border: 1px solid var(--border);
-		border-radius: var(--radius);
-		overflow: hidden;
+		transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
 	}
 
-	.video-card-thumb {
-		background: var(--teal-800);
-		height: 110px;
+	.social-card:hover {
+		box-shadow: 0 10px 24px rgba(15, 23, 42, 0.1);
+		transform: translateY(-2px);
+	}
+
+	.social-icon {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-	}
-
-	.video-card .play-icon {
+		width: 46px;
+		height: 46px;
+		flex-shrink: 0;
+		border-radius: 50%;
 		color: #fff;
+	}
+
+	.social-icon :global(svg) {
+		width: 22px;
+		height: 22px;
+	}
+
+	.theme-facebook .social-icon { background: #1877f2; }
+	.theme-facebook:hover { border-color: #1877f2; }
+
+	.theme-instagram .social-icon {
+		background: radial-gradient(circle at 30% 110%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+	}
+	.theme-instagram:hover { border-color: #d6249f; }
+
+	.social-info {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.social-info strong {
+		font-family: var(--font-sans);
+		font-weight: 800;
 		font-size: 1.4rem;
+		color: var(--teal-800);
 	}
 
-	.video-card-title {
-		padding: 14px 16px 4px;
-		font-size: 0.9rem;
-		font-weight: 700;
-		color: var(--teal-900);
-	}
-
-	.video-card:hover .video-card-title {
-		color: var(--coral);
-	}
-
-	.video-card-duration {
-		padding: 0 16px 14px;
-		font-size: 0.78rem;
+	.social-info span {
+		font-size: 0.82rem;
 		color: var(--ink-soft);
 	}
 
@@ -291,7 +349,7 @@ const videos = [
 		.social-stats {
 			grid-template-columns: 1fr;
 		}
-		.video-grid {
+		.news-gallery {
 			grid-template-columns: 1fr;
 		}
 	}

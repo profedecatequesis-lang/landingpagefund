@@ -2,7 +2,7 @@
 const base = import.meta.env.BASE_URL;
 interface Props {
 	eyebrow: string;
-	title: string;
+	title?: string;
 	description: string;
 	theme?: "teal" | "coral" | "mustard" | "deep";
 }
@@ -17,7 +17,7 @@ const { eyebrow, title, description, theme = "teal" } = Astro.props;
 			<span>/</span>
 			<span>{eyebrow}</span>
 		</nav>
-		<h1>{title}</h1>
+		{title && <h1>{title}</h1>}
 		<p>{description}</p>
 	</div>
 </section>

@@ -1,6 +1,7 @@
 ---
 const base = import.meta.env.BASE_URL;
 import SectionLayout from "../layouts/SectionLayout.astro";
+import Icon from "../components/Icon.astro";
 
 const navItems = [
 	{ id: "cursos-con-puntaje", label: "Cursos con puntaje" },
@@ -9,6 +10,65 @@ const navItems = [
 	{ id: "webinarios", label: "Webinarios" },
 	// { id: "calendario-de-cursada", label: "Calendario de cursada" }, // oculto por el momento
 	// { id: "certificaciones", label: "Certificaciones" }, // oculto por el momento
+	{ id: "cursos-ya-dictados", label: "Cursos ya dictados" },
+];
+
+const cursosDictados = [
+	{
+		anio: "2026",
+		titulo: "Gestión Directiva: Desarrollando capacidades para la Transformación Educativa",
+		detalle: "50 hs reloj – Semipresencial asincrónico – Protocolo 2026/SDFP-00000627",
+	},
+	{
+		anio: "2026",
+		titulo: "Gestión directiva y legislación escolar en la escuela posible (Nivel avanzado)",
+		detalle: "50 hs reloj – Semipresencial asincrónico – Protocolo 2026/SDFP-00000292",
+	},
+	{
+		anio: "2025",
+		titulo: "Gestión Directiva e Inclusión Educativa en la Escuela Posible",
+		detalle: "40 hs reloj – Semipresencial asincrónico – Protocolo 2025/SDFP-00001102",
+	},
+	{
+		anio: "2025",
+		titulo: "Gestión Directiva: Cuidar, acompañar y fortalecer las Trayectorias Escolares Estudiantiles",
+		detalle: "40 hs reloj – Semipresencial asincrónico – Protocolo 2025/SDFP-00000807",
+	},
+	{
+		anio: "2025",
+		titulo: "Gestión Directiva: mejorando la calidad desde el enfoque del Bienestar Educativo",
+		detalle: "40 hs reloj – Semipresencial asincrónico – Protocolo 2025/SDFP-00000890",
+	},
+	{
+		anio: "2025",
+		titulo: "Gestión Directiva y Liderazgo Educativo en la Escuela Posible",
+		detalle: "40 hs reloj – Semipresencial asincrónico – Protocolo 2025/SDFP-00000210",
+	},
+	{
+		anio: "2025",
+		titulo: "Gestión Directiva en la Escuela Posible: Resignificando el PEI y potenciando el PMI para la mejora de la calidad educativa",
+		detalle: "40 hs reloj – Semipresencial asincrónico – Protocolo 2025 / SDFP- 00000176",
+	},
+	{
+		anio: "2024-2025",
+		titulo: "Gestión Directiva, Legislación Educativa y Normativa Escolar en la Escuela Posible",
+		detalle: "40 hs reloj – Semipresencial asincrónico – Protocolo 2024/SDFP-00000363",
+	},
+	{
+		anio: "2024",
+		titulo: "Gestión institucional por indicadores: construyendo la calidad educativa de manera situada",
+		detalle: "40 hs reloj – Semipresencial asincrónico – Protocolo 2024/SDFP-00000046",
+	},
+	{
+		anio: "2024",
+		titulo: "Hacia una gestión institucional innovadora: desarrollando capacidades para la mejora educativa sostenible",
+		detalle: "40 hs reloj – Semipresencial asincrónico – Protocolo 2024/SDFP-00000037 y 2024/SDFP-00000001",
+	},
+	{
+		anio: "2023",
+		titulo: "Fortalecer el Trabajo Colaborativo de la Gestión Directiva y los Equipos Docentes desde las dimensiones Política, Cultural y Pedagógico-Institucional",
+		detalle: "50 hs reloj – Semipresencial asincrónico – Resolución 25/2023 RPFDC",
+	},
 ];
 
 const cursos = [
@@ -83,7 +143,18 @@ const cronograma = [
 			educativo. Bajo un formato ameno de clases sincrónicas nos proponemos acompañarte en tu
 			desarrollo profesional.
 		</p>
-		<a href={base + "contacto"} class="btn btn-primary">Quiero más información</a>
+		<div class="cta-group">
+			<a href="https://forms.gle/nn9j8uddSiYSBrd97" class="btn btn-primary" target="_blank" rel="noopener noreferrer">¡Quiero sumarme!</a>
+			<a
+				href="https://wa.me/5493516315102?text=Quiero+informaci%C3%B3n+sobre+la+PREPARACI%C3%93N+PARA+RENDIR+CONCURSOS+DIRECTIVOS&utm_source=chatgpt.com"
+				class="btn btn-outline-teal btn-whatsapp"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<Icon name="whatsapp" />
+				Contactanos
+			</a>
+		</div>
 	</section>
 
 	{/* Seminarios — oculto por el momento, ver `seminarios` en el frontmatter
@@ -113,7 +184,18 @@ const cronograma = [
 			en relación con la superioridad. Obtendrás material exclusivo que podrás adaptar a tu
 			práctica cotidiana y ganar confianza en el día a día de la profesión.
 		</p>
-		<a href={base + "contacto"} class="btn btn-teal">Más información</a>
+		<div class="cta-group">
+			<a href="https://forms.gle/h3UbNNUWS2jGqaod9" class="btn btn-teal" target="_blank" rel="noopener noreferrer">¡Inscribirme ahora!</a>
+			<a
+				href="https://wa.me/5493516315102?text=Quiero+informaci%C3%B3n+sobre+el+WEBINARIO+DE+LEGISLACION+Y+NORMATIVA+ESCOLAR&"
+				class="btn btn-outline-teal btn-whatsapp"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<Icon name="whatsapp" />
+				Contactanos
+			</a>
+		</div>
 	</section>
 
 	{/* Calendario de cursada — oculto por el momento, ver `cronograma` en el frontmatter
@@ -143,6 +225,22 @@ const cronograma = [
 		</p>
 	</section>
 	*/}
+
+	<section id="cursos-ya-dictados">
+		<span class="eyebrow">Cursos ya dictados</span>
+		<h2>Cursos ya dictados</h2>
+		<ul class="past-courses-list">
+			{cursosDictados.map((c) => (
+				<li>
+					<span class="past-course-year">{c.anio}</span>
+					<div class="past-course-body">
+						<strong>{c.titulo}</strong>
+						<span>{c.detalle}</span>
+					</div>
+				</li>
+			))}
+		</ul>
+	</section>
 </SectionLayout>
 
 <style>
@@ -242,6 +340,72 @@ const cronograma = [
 		}
 		.schedule-horario {
 			text-align: left;
+		}
+	}
+
+	.cta-group {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+		margin-top: 8px;
+	}
+
+	.btn-whatsapp {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.past-courses-list {
+		list-style: none;
+		margin: 20px 0 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	.past-courses-list li {
+		display: flex;
+		gap: 16px;
+		padding: 14px 16px;
+		border-bottom: 1px solid var(--border);
+	}
+
+	.past-courses-list li:last-child {
+		border-bottom: none;
+	}
+
+	.past-course-year {
+		flex-shrink: 0;
+		width: 90px;
+		font-weight: 800;
+		color: var(--teal-800);
+		font-family: var(--font-sans);
+	}
+
+	.past-course-body {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.past-course-body strong {
+		color: var(--teal-900);
+	}
+
+	.past-course-body span {
+		font-size: 0.85rem;
+		color: var(--ink-soft);
+	}
+
+	@media (max-width: 560px) {
+		.past-courses-list li {
+			flex-direction: column;
+			gap: 4px;
+		}
+		.past-course-year {
+			width: auto;
 		}
 	}
 </style>
