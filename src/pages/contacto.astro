@@ -18,9 +18,7 @@ const navItems = [
 	<section id="contacto-form">
 		<span class="eyebrow">Contacto</span>
 		<h2>Escribinos</h2>
-		<form class="contact-form" action="https://formspree.io/f/fundacionfreinetcba@gmail.com" method="POST">
-			<input type="hidden" name="_subject" value="Nueva consulta desde la web — Fundación Freinet" />
-			<input type="text" name="_gotcha" style="display: none" tabindex="-1" autocomplete="off" />
+		<form class="contact-form" id="contactForm">
 			<div class="form-row">
 				<label>
 					Nombre y apellido
@@ -43,6 +41,31 @@ const navItems = [
 		</form>
 	</section>
 </SectionLayout>
+
+<script>
+	const form = document.getElementById("contactForm") as HTMLFormElement | null;
+
+	form?.addEventListener("submit", (e) => {
+		e.preventDefault();
+		const data = new FormData(form);
+		const nombre = data.get("nombre")?.toString() ?? "";
+		const email = data.get("email")?.toString() ?? "";
+		const institucion = data.get("institucion")?.toString() ?? "";
+		const mensaje = data.get("mensaje")?.toString() ?? "";
+
+		const subject = `Consulta desde la web — ${nombre}`;
+		const body = [
+			`Nombre: ${nombre}`,
+			`Email: ${email}`,
+			`Institución: ${institucion || "-"}`,
+			"",
+			"Mensaje:",
+			mensaje,
+		].join("\n");
+
+		window.location.href = `mailto:fundacionfreinetcba@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+	});
+</script>
 
 <style>
 	.contact-form {
