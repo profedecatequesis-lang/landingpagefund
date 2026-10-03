@@ -1,0 +1,411 @@
+---
+const base = import.meta.env.BASE_URL;
+import SectionLayout from "../layouts/SectionLayout.astro";
+import Icon from "../components/Icon.astro";
+
+const navItems = [
+	{ id: "cursos-con-puntaje", label: "Cursos con puntaje" },
+	{ id: "gestion-directiva", label: "Programa destacado" },
+	// { id: "seminarios", label: "Seminarios" }, // oculto por el momento
+	{ id: "webinarios", label: "Webinarios" },
+	// { id: "calendario-de-cursada", label: "Calendario de cursada" }, // oculto por el momento
+	// { id: "certificaciones", label: "Certificaciones" }, // oculto por el momento
+	{ id: "cursos-ya-dictados", label: "Cursos ya dictados" },
+];
+
+const cursosDictados = [
+	{
+		anio: "2026",
+		titulo: "Gestión Directiva: Desarrollando capacidades para la Transformación Educativa",
+		detalle: "50 hs reloj – Semipresencial asincrónico – Protocolo 2026/SDFP-00000627",
+	},
+	{
+		anio: "2026",
+		titulo: "Gestión directiva y legislación escolar en la escuela posible (Nivel avanzado)",
+		detalle: "50 hs reloj – Semipresencial asincrónico – Protocolo 2026/SDFP-00000292",
+	},
+	{
+		anio: "2025",
+		titulo: "Gestión Directiva e Inclusión Educativa en la Escuela Posible",
+		detalle: "40 hs reloj – Semipresencial asincrónico – Protocolo 2025/SDFP-00001102",
+	},
+	{
+		anio: "2025",
+		titulo: "Gestión Directiva: Cuidar, acompañar y fortalecer las Trayectorias Escolares Estudiantiles",
+		detalle: "40 hs reloj – Semipresencial asincrónico – Protocolo 2025/SDFP-00000807",
+	},
+	{
+		anio: "2025",
+		titulo: "Gestión Directiva: mejorando la calidad desde el enfoque del Bienestar Educativo",
+		detalle: "40 hs reloj – Semipresencial asincrónico – Protocolo 2025/SDFP-00000890",
+	},
+	{
+		anio: "2025",
+		titulo: "Gestión Directiva y Liderazgo Educativo en la Escuela Posible",
+		detalle: "40 hs reloj – Semipresencial asincrónico – Protocolo 2025/SDFP-00000210",
+	},
+	{
+		anio: "2025",
+		titulo: "Gestión Directiva en la Escuela Posible: Resignificando el PEI y potenciando el PMI para la mejora de la calidad educativa",
+		detalle: "40 hs reloj – Semipresencial asincrónico – Protocolo 2025 / SDFP- 00000176",
+	},
+	{
+		anio: "2024-2025",
+		titulo: "Gestión Directiva, Legislación Educativa y Normativa Escolar en la Escuela Posible",
+		detalle: "40 hs reloj – Semipresencial asincrónico – Protocolo 2024/SDFP-00000363",
+	},
+	{
+		anio: "2024",
+		titulo: "Gestión institucional por indicadores: construyendo la calidad educativa de manera situada",
+		detalle: "40 hs reloj – Semipresencial asincrónico – Protocolo 2024/SDFP-00000046",
+	},
+	{
+		anio: "2024",
+		titulo: "Hacia una gestión institucional innovadora: desarrollando capacidades para la mejora educativa sostenible",
+		detalle: "40 hs reloj – Semipresencial asincrónico – Protocolo 2024/SDFP-00000037 y 2024/SDFP-00000001",
+	},
+	{
+		anio: "2023",
+		titulo: "Fortalecer el Trabajo Colaborativo de la Gestión Directiva y los Equipos Docentes desde las dimensiones Política, Cultural y Pedagógico-Institucional",
+		detalle: "50 hs reloj – Semipresencial asincrónico – Resolución 25/2023 RPFDC",
+	},
+];
+
+const cursos = [
+	{
+		titulo: "Gestión Directiva: Inclusión y Convivencia desde el Enfoque de Bienestar Educativo",
+		horas: "50 horas",
+		modalidad: "Semipresencial asincrónica",
+		protocolo: "2026/SDFP 00000797",
+		cerrado: true,
+	},
+];
+
+const seminarios = [
+	{ titulo: "Neurociencias aplicadas al aula", duracion: "8 horas" },
+	{ titulo: "Evaluación formativa en la escuela primaria", duracion: "12 horas" },
+	{ titulo: "Herramientas digitales para la gestión escolar", duracion: "10 horas" },
+];
+
+const cronograma = [
+	{ fecha: "Sáb. 8/08", detalle: "Gestión Directiva — Encuentro 1", horario: "8:00 a 15:30 hs" },
+	{ fecha: "Sáb. 22/08", detalle: "Gestión Directiva — Encuentro 2", horario: "8:00 a 15:30 hs" },
+	{ fecha: "Sáb. 5/09", detalle: "Gestión Directiva — Encuentro 3", horario: "8:00 a 15:30 hs" },
+	{ fecha: "Sáb. 19/09", detalle: "Gestión Directiva — Encuentro 4", horario: "8:00 a 15:30 hs" },
+	{ fecha: "Vie. 3/10", detalle: "Gestión Directiva — Evaluación final", horario: "9:00 a 12:00 hs" },
+];
+---
+
+<SectionLayout
+	title="Formación — Fundación Freinet"
+	description="Cursos con puntaje docente, gestión directiva, seminarios y calendario de cursada."
+	eyebrow="Formación"
+	heroTitle="Capacitación con puntaje para toda la comunidad educativa"
+	heroDescription="Programas pensados para docentes, equipos de conducción e instituciones que buscan sumar antecedentes y herramientas concretas para el aula y la gestión."
+	theme="coral"
+	navItems={navItems}
+>
+	<section id="cursos-con-puntaje">
+		<span class="eyebrow">Cursos con puntaje</span>
+		<h2>Propuestas vigentes</h2>
+		<p>Próximamente presentaremos nuestra renovada oferta formativa.</p>
+		<div class="course-list">
+			{cursos.map((c) => (
+				<article class="course-item">
+					<h3>{c.titulo}</h3>
+					{c.descripcion ? (
+						<p>{c.descripcion}</p>
+					) : (
+						<div class="course-meta">
+							<span>⏱ {c.horas}</span>
+							<span>💻 {c.modalidad}</span>
+							<span>📋 Protocolo {c.protocolo}</span>
+						</div>
+					)}
+					{c.cerrado ? (
+						<span class="badge-cerrado">Inscripción cerrada</span>
+					) : (
+						<a href={base + "contacto"} class="btn btn-teal">Avisarme</a>
+					)}
+				</article>
+			))}
+		</div>
+	</section>
+
+	<section id="gestion-directiva">
+		<span class="eyebrow">Programa destacado</span>
+		<h2>Preparación para rendir Concursos Directivos</h2>
+		<p>
+			La formación más completa para afrontar las instancias concursales en la selección de
+			cargos directivos para la Provincia de Córdoba. En dos niveles, inicial y avanzado,
+			conocerás las funciones y desarrollarás las capacidades requeridas para desempeñarte en
+			direcciones y vicedirecciones escolares de todos los niveles y modalidades del sistema
+			educativo. Bajo un formato ameno de clases sincrónicas nos proponemos acompañarte en tu
+			desarrollo profesional.
+		</p>
+		<div class="cta-group">
+			<a href="https://forms.gle/nn9j8uddSiYSBrd97" class="btn btn-primary" target="_blank" rel="noopener noreferrer">¡Quiero sumarme!</a>
+			<a
+				href="https://wa.me/5493516315102?text=Quiero+informaci%C3%B3n+sobre+la+PREPARACI%C3%93N+PARA+RENDIR+CONCURSOS+DIRECTIVOS&utm_source=chatgpt.com"
+				class="btn btn-outline-teal btn-whatsapp"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<Icon name="whatsapp" />
+				Contactanos
+			</a>
+		</div>
+	</section>
+
+	{/* Seminarios — oculto por el momento, ver `seminarios` en el frontmatter
+	<section id="seminarios">
+		<span class="eyebrow">Seminarios</span>
+		<h2>Formatos breves</h2>
+		<p>Texto de ejemplo — propuestas cortas para actualizarse en temáticas puntuales.</p>
+		<ul class="seminar-list">
+			{seminarios.map((s) => (
+				<li>
+					<span>{s.titulo}</span>
+					<strong>{s.duracion}</strong>
+				</li>
+			))}
+		</ul>
+	</section>
+	*/}
+
+	<section id="webinarios">
+		<span class="eyebrow">Webinarios</span>
+		<h2>Legislación y Normativa Escolar</h2>
+		<p>
+			En un formato de encuentros sincrónicos de dos horas de duración, te capacitamos en el
+			manejo del componente político-normativo que hace al ejercicio de la función docente y
+			directiva. Aprenderás sobre tus derechos y obligaciones, procedimiento administrativo
+			para reclamos, potestad sancionadora de la administración y garantías del debido proceso
+			en relación con la superioridad. Obtendrás material exclusivo que podrás adaptar a tu
+			práctica cotidiana y ganar confianza en el día a día de la profesión.
+		</p>
+		<div class="cta-group">
+			<a href="https://forms.gle/h3UbNNUWS2jGqaod9" class="btn btn-teal" target="_blank" rel="noopener noreferrer">¡Inscribirme ahora!</a>
+			<a
+				href="https://wa.me/5493516315102?text=Quiero+informaci%C3%B3n+sobre+el+WEBINARIO+DE+LEGISLACION+Y+NORMATIVA+ESCOLAR&"
+				class="btn btn-outline-teal btn-whatsapp"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				<Icon name="whatsapp" />
+				Contactanos
+			</a>
+		</div>
+	</section>
+
+	{/* Calendario de cursada — oculto por el momento, ver `cronograma` en el frontmatter
+	<section id="calendario-de-cursada">
+		<span class="eyebrow">Calendario</span>
+		<h2>Próximas fechas</h2>
+		<div class="schedule-table">
+			{cronograma.map((row) => (
+				<div class="schedule-row">
+					<span class="schedule-fecha">{row.fecha}</span>
+					<span class="schedule-detalle">{row.detalle}</span>
+					<span class="schedule-horario">{row.horario}</span>
+				</div>
+			))}
+		</div>
+	</section>
+	*/}
+
+	{/* Certificaciones — oculto por el momento
+	<section id="certificaciones">
+		<span class="eyebrow">Certificaciones</span>
+		<h2>Cómo funciona el puntaje docente</h2>
+		<p>
+			Texto de ejemplo: al finalizar cada curso, quienes aprueben la instancia de evaluación
+			reciben un certificado con las horas cátedra acreditadas, válido para el sistema de
+			puntaje docente de la provincia de Córdoba.
+		</p>
+	</section>
+	*/}
+
+	<section id="cursos-ya-dictados">
+		<span class="eyebrow">Cursos ya dictados</span>
+		<h2>Cursos ya dictados</h2>
+		<ul class="past-courses-list">
+			{cursosDictados.map((c) => (
+				<li>
+					<span class="past-course-year">{c.anio}</span>
+					<div class="past-course-body">
+						<strong>{c.titulo}</strong>
+						<span>{c.detalle}</span>
+					</div>
+				</li>
+			))}
+		</ul>
+	</section>
+</SectionLayout>
+
+<style>
+	.course-list {
+		display: flex;
+		flex-direction: column;
+		gap: 18px;
+		margin-top: 20px;
+	}
+
+	.course-item {
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		padding: 22px 24px;
+		background: var(--cream);
+	}
+
+	.course-item h3 {
+		font-family: var(--font-sans);
+		font-size: 1.05rem;
+		color: var(--teal-900);
+		margin-bottom: 10px;
+	}
+
+	.course-meta {
+		display: flex;
+		gap: 16px;
+		flex-wrap: wrap;
+		font-size: 0.85rem;
+		color: var(--ink-soft);
+		margin-bottom: 16px;
+	}
+
+	.badge-cerrado {
+		display: inline-block;
+		border: 1px solid #c0392b;
+		color: #c0392b;
+		font-weight: 700;
+		border-radius: var(--radius);
+		padding: 8px 16px;
+	}
+
+	.seminar-list {
+		list-style: none;
+		margin: 20px 0 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	.seminar-list li {
+		display: flex;
+		justify-content: space-between;
+		padding: 14px 16px;
+		background: var(--teal-50);
+		border-radius: var(--radius);
+	}
+
+	.seminar-list strong {
+		color: var(--teal-800);
+	}
+
+	.schedule-table {
+		margin-top: 20px;
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		overflow: hidden;
+	}
+
+	.schedule-row {
+		display: grid;
+		grid-template-columns: 110px 1fr 160px;
+		gap: 12px;
+		padding: 12px 18px;
+		font-size: 0.9rem;
+	}
+
+	.schedule-row:nth-child(odd) {
+		background: var(--teal-50);
+	}
+
+	.schedule-fecha {
+		font-weight: 700;
+		color: var(--teal-800);
+	}
+
+	.schedule-horario {
+		color: var(--ink-soft);
+		text-align: right;
+	}
+
+	@media (max-width: 560px) {
+		.schedule-row {
+			grid-template-columns: 1fr;
+			gap: 4px;
+		}
+		.schedule-horario {
+			text-align: left;
+		}
+	}
+
+	.cta-group {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+		margin-top: 8px;
+	}
+
+	.btn-whatsapp {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.past-courses-list {
+		list-style: none;
+		margin: 20px 0 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	.past-courses-list li {
+		display: flex;
+		gap: 16px;
+		padding: 14px 16px;
+		border-bottom: 1px solid var(--border);
+	}
+
+	.past-courses-list li:last-child {
+		border-bottom: none;
+	}
+
+	.past-course-year {
+		flex-shrink: 0;
+		width: 90px;
+		font-weight: 800;
+		color: var(--teal-800);
+		font-family: var(--font-sans);
+	}
+
+	.past-course-body {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.past-course-body strong {
+		color: var(--teal-900);
+	}
+
+	.past-course-body span {
+		font-size: 0.85rem;
+		color: var(--ink-soft);
+	}
+
+	@media (max-width: 560px) {
+		.past-courses-list li {
+			flex-direction: column;
+			gap: 4px;
+		}
+		.past-course-year {
+			width: auto;
+		}
+	}
+</style>

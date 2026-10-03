@@ -1,0 +1,121 @@
+---
+import SectionLayout from "../layouts/SectionLayout.astro";
+
+const navItems = [
+	{ id: "contacto-form", label: "Contacto" },
+];
+---
+
+<SectionLayout
+	title="Contacto — Fundación Freinet"
+	description="Contacto de la Fundación Freinet."
+	eyebrow="Contacto"
+	heroTitle="Hablemos"
+	heroDescription="Escribinos por acá o por WhatsApp y te respondemos a la brevedad. Estamos para acompañarte en tu formación o en un proyecto institucional."
+	theme="coral"
+	navItems={navItems}
+>
+	<section id="contacto-form">
+		<span class="eyebrow">Contacto</span>
+		<h2>Escribinos</h2>
+		<form class="contact-form" id="contactForm">
+			<div class="form-row">
+				<label>
+					Nombre y apellido
+					<input type="text" name="nombre" placeholder="Ej: Ana Pérez" required />
+				</label>
+				<label>
+					Email
+					<input type="email" name="email" placeholder="nombre@correo.com" required />
+				</label>
+			</div>
+			<label>
+				Institución (opcional)
+				<input type="text" name="institucion" placeholder="Nombre de tu escuela" />
+			</label>
+			<label>
+				Mensaje
+				<textarea name="mensaje" rows="4" placeholder="Contanos en qué podemos ayudarte" required></textarea>
+			</label>
+			<button type="submit" class="btn btn-primary">Enviar mensaje</button>
+		</form>
+	</section>
+</SectionLayout>
+
+<script>
+	const form = document.getElementById("contactForm") as HTMLFormElement | null;
+
+	form?.addEventListener("submit", (e) => {
+		e.preventDefault();
+		const data = new FormData(form);
+		const nombre = data.get("nombre")?.toString() ?? "";
+		const email = data.get("email")?.toString() ?? "";
+		const institucion = data.get("institucion")?.toString() ?? "";
+		const mensaje = data.get("mensaje")?.toString() ?? "";
+
+		const subject = `Consulta desde la web — ${nombre}`;
+		const body = [
+			`Nombre: ${nombre}`,
+			`Email: ${email}`,
+			`Institución: ${institucion || "-"}`,
+			"",
+			"Mensaje:",
+			mensaje,
+		].join("\n");
+
+		window.location.href = `mailto:fundacionfreinetcba@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+	});
+</script>
+
+<style>
+	.contact-form {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		margin-top: 20px;
+		max-width: 560px;
+	}
+
+	.form-row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 16px;
+	}
+
+	.contact-form label {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+		font-size: 0.86rem;
+		font-weight: 700;
+		color: var(--teal-900);
+	}
+
+	.contact-form input,
+	.contact-form textarea {
+		font-family: var(--font-sans);
+		font-size: 0.95rem;
+		padding: 11px 14px;
+		border-radius: var(--radius);
+		border: 1px solid var(--border);
+		font-weight: 400;
+		color: var(--ink);
+		resize: vertical;
+	}
+
+	.contact-form input:focus,
+	.contact-form textarea:focus {
+		outline: 2px solid var(--teal-600);
+		outline-offset: 1px;
+	}
+
+	.contact-form button {
+		align-self: flex-start;
+	}
+
+	@media (max-width: 560px) {
+		.form-row {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
