@@ -2,8 +2,7 @@
 import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
-// Configurado para GitHub Pages: https://profedecatequesis-lang.github.io/landingpagefund/
+// Configurado para GitHub Pages con dominio propio: https://fundacionfreinet.org.ar/
 export default defineConfig({
-  site: 'https://profedecatequesis-lang.github.io',
-  base: '/landingpagefund/',
+  site: 'https://fundacionfreinet.org.ar',
 });

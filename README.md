@@ -2,7 +2,7 @@
 
 Sitio estático construido con [Astro](https://astro.build). Publicado automáticamente con **GitHub Pages** en:
 
-👉 https://profedecatequesis-lang.github.io/landingpagefund/
+👉 https://fundacionfreinet.org.ar/
 
 ## Desarrollo
 
@@ -17,4 +17,4 @@ npm run preview  # vista previa del build
 
 Cada push a `main` ejecuta el workflow `.github/workflows/deploy.yml`, que compila el sitio y lo despliega en GitHub Pages (origen: GitHub Actions).
 
-> Nota: los enlaces internos usan `import.meta.env.BASE_URL` (ver `astro.config.mjs` → `base: '/landingpagefund/'`) para que funcionen tanto en local como en Pages.
+> Nota: los enlaces internos usan `import.meta.env.BASE_URL` (ver `astro.config.mjs`) para que funcionen tanto en local como en Pages.
