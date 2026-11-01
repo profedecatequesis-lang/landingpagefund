@@ -4,7 +4,7 @@ import SectionLayout from "../layouts/SectionLayout.astro";
 import Icon from "../components/Icon.astro";
 
 const navItems = [
-	{ id: "cursos-con-puntaje", label: "Cursos con puntaje" },
+	{ id: "cursos-con-puntaje", label: "Cursos con Resolución Oficial" },
 	{ id: "gestion-directiva", label: "Programa destacado" },
 	// { id: "seminarios", label: "Seminarios" }, // oculto por el momento
 	{ id: "webinarios", label: "Webinarios" },
@@ -14,6 +14,11 @@ const navItems = [
 ];
 
 const cursosDictados = [
+	{
+		anio: "2026",
+		titulo: "Gestión Directiva: Inclusión y Convivencia desde el Enfoque de Bienestar Educativo",
+		detalle: "50 hs reloj – Semipresencial asincrónico – Protocolo 2026/SDFP-00000797",
+	},
 	{
 		anio: "2026",
 		titulo: "Gestión Directiva: Desarrollando capacidades para la Transformación Educativa",
@@ -73,11 +78,11 @@ const cursosDictados = [
 
 const cursos = [
 	{
-		titulo: "Gestión Directiva: Inclusión y Convivencia desde el Enfoque de Bienestar Educativo",
-		horas: "50 horas",
-		modalidad: "Semipresencial asincrónica",
-		protocolo: "2026/SDFP 00000797",
-		cerrado: true,
+		titulo: "Gestión Directiva: Conduciendo la Enseñanza y Potenciando Equipos Docentes",
+		horas: "50 hs",
+		modalidad: "Semipresencial asincrónico",
+		protocolo: "2026/SDFP-00001396",
+		cerrado: false,
 	},
 ];
 
@@ -106,9 +111,9 @@ const cronograma = [
 	navItems={navItems}
 >
 	<section id="cursos-con-puntaje">
-		<span class="eyebrow">Cursos con puntaje</span>
+		<span class="eyebrow">Cursos con Resolución Oficial</span>
 		<h2>Propuestas vigentes</h2>
-		<p>Próximamente presentaremos nuestra renovada oferta formativa.</p>
+		<p>¡Último curso del año! ¡No te lo pierdas!</p>
 		<div class="course-list">
 			{cursos.map((c) => (
 				<article class="course-item">
@@ -125,7 +130,7 @@ const cronograma = [
 					{c.cerrado ? (
 						<span class="badge-cerrado">Inscripción cerrada</span>
 					) : (
-						<a href={base + "contacto"} class="btn btn-teal">Avisarme</a>
+						<a href="https://forms.gle/UMwK87bR5dDfmAFT6" class="btn btn-primary" target="_blank" rel="noopener noreferrer">¡QUIERO INSCRIBIRME!</a>
 					)}
 				</article>
 			))}
@@ -144,7 +149,6 @@ const cronograma = [
 			desarrollo profesional.
 		</p>
 		<div class="cta-group">
-			<a href="https://forms.gle/nn9j8uddSiYSBrd97" class="btn btn-primary" target="_blank" rel="noopener noreferrer">¡Quiero sumarme!</a>
 			<a
 				href="https://wa.me/5493516315102?text=Quiero+informaci%C3%B3n+sobre+la+PREPARACI%C3%93N+PARA+RENDIR+CONCURSOS+DIRECTIVOS&utm_source=chatgpt.com"
 				class="btn btn-outline-teal btn-whatsapp"
@@ -185,7 +189,6 @@ const cronograma = [
 			práctica cotidiana y ganar confianza en el día a día de la profesión.
 		</p>
 		<div class="cta-group">
-			<a href="https://forms.gle/h3UbNNUWS2jGqaod9" class="btn btn-teal" target="_blank" rel="noopener noreferrer">¡Inscribirme ahora!</a>
 			<a
 				href="https://wa.me/5493516315102?text=Quiero+informaci%C3%B3n+sobre+el+WEBINARIO+DE+LEGISLACION+Y+NORMATIVA+ESCOLAR&"
 				class="btn btn-outline-teal btn-whatsapp"

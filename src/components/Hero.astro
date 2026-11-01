@@ -4,6 +4,14 @@ const slides = [
 	{
 		tag: "Institucional",
 		theme: "teal",
+		title: "Abrimos las inscripciones al curso “Gestión Directiva: Conduciendo la Enseñanza y Potenciando Equipos Docentes”",
+		excerpt:
+			"Última capacitación del año con RESOLUCIÓN OFICIAL que acredita 50 hs reloj, en modalidad semipresencial, para todos los niveles y modalidades del sistema educativo ¡CUPOS LIMITADOS!",
+		href: base + "formacion#cursos-con-puntaje",
+	},
+	{
+		tag: "Institucional",
+		theme: "teal",
 		title: "Fundación Freinet cerró el primer cuatrimestre con récord de inscriptos",
 		excerpt:
 			"Más de 300 educadoras y educadores de toda la provincia de Córdoba participaron de nuestras propuestas de formación durante el primer semestre de 2026.",
@@ -145,10 +153,13 @@ const infoLinks = [
 		border-radius: var(--radius);
 		overflow: hidden;
 		min-height: 320px;
+		display: grid;
 	}
 
 	.slide {
-		display: none;
+		grid-area: 1 / 1;
+		visibility: hidden;
+		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		height: 100%;
@@ -158,7 +169,7 @@ const infoLinks = [
 	}
 
 	.slide.active {
-		display: flex;
+		visibility: visible;
 	}
 
 	.theme-teal { background: var(--teal-800); }
