@@ -4,7 +4,7 @@ import SectionLayout from "../layouts/SectionLayout.astro";
 import Icon from "../components/Icon.astro";
 
 const navItems = [
-	{ id: "cursos-con-puntaje", label: "Cursos con Resolución Oficial" },
+	{ id: "cursos-con-resolucion", label: "Cursos con Resolución Oficial" },
 	{ id: "gestion-directiva", label: "Programa destacado" },
 	// { id: "seminarios", label: "Seminarios" }, // oculto por el momento
 	{ id: "webinarios", label: "Webinarios" },
@@ -105,12 +105,12 @@ const cronograma = [
 	title="Formación — Fundación Freinet"
 	description="Cursos con resolución oficial del Ministerio de Educación, gestión directiva, seminarios y calendario de cursada."
 	eyebrow="Formación"
-	heroTitle="Capacitación con puntaje para toda la comunidad educativa"
+	heroTitle="Capacitación con resolución oficial del Ministerio de Educación para toda la comunidad educativa"
 	heroDescription="Programas pensados para docentes, equipos de conducción e instituciones que buscan sumar antecedentes y herramientas concretas para el aula y la gestión."
 	theme="coral"
 	navItems={navItems}
 >
-	<section id="cursos-con-puntaje">
+	<section id="cursos-con-resolucion">
 		<span class="eyebrow">Cursos con Resolución Oficial</span>
 		<h2>Propuestas vigentes</h2>
 		<p>¡Último curso del año! ¡No te lo pierdas!</p>
@@ -200,34 +200,6 @@ const cronograma = [
 			</a>
 		</div>
 	</section>
-
-	{/* Calendario de cursada — oculto por el momento, ver `cronograma` en el frontmatter
-	<section id="calendario-de-cursada">
-		<span class="eyebrow">Calendario</span>
-		<h2>Próximas fechas</h2>
-		<div class="schedule-table">
-			{cronograma.map((row) => (
-				<div class="schedule-row">
-					<span class="schedule-fecha">{row.fecha}</span>
-					<span class="schedule-detalle">{row.detalle}</span>
-					<span class="schedule-horario">{row.horario}</span>
-				</div>
-			))}
-		</div>
-	</section>
-	*/}
-
-	{/* Certificaciones — oculto por el momento
-	<section id="certificaciones">
-		<span class="eyebrow">Certificaciones</span>
-		<h2>Cómo funciona el puntaje docente</h2>
-		<p>
-			Texto de ejemplo: al finalizar cada curso, quienes aprueben la instancia de evaluación
-			reciben un certificado con las horas cátedra acreditadas, válido para el sistema de
-			puntaje docente de la provincia de Córdoba.
-		</p>
-	</section>
-	*/}
 
 	<section id="cursos-ya-dictados">
 		<span class="eyebrow">Cursos ya dictados</span>
